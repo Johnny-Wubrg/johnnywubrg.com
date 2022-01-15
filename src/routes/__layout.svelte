@@ -1,5 +1,5 @@
 <script context="module">
-  import '../layout.css';
+  import '@/layout.css';
 </script>
 
 <main>

@@ -51,7 +51,7 @@
 </script>
 
 <script>
-  import PostCard from '../components/PostCard.svelte';
+  import PostExcerpt from '@/components/PostExcerpt.svelte';
 	export let posts;
 </script>
 
@@ -60,7 +60,7 @@
   <ul>
     {#each posts as post}
       <li>
-        <PostCard {post} />
+        <PostExcerpt {post} />
       </li>
     {/each}
   </ul>
