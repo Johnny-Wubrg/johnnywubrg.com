@@ -59,16 +59,16 @@
 	</div>
 {/if}
 
-<style>
+<style lang="scss">
 	.card-preview {
 		position: absolute;
 		left: var(--tooltip-x);
 		top: var(--tooltip-y);
 		width: 300px;
+    img {
+      display: block;
+      width: 100%;
+    }
 	}
 
-	.card-preview img {
-		display: block;
-		width: 100%;
-	}
 </style>

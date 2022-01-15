@@ -1,4 +1,5 @@
 <script context="module">
+  export const prerender = true;
   const query = `
     query getPosts {
       posts {
