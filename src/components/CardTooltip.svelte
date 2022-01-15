@@ -1,7 +1,11 @@
 <script>
+	import { onMount } from 'svelte';
+
 	import { fade } from 'svelte/transition';
 	export let card;
 	export let tooltipPos = { x: 0, y: 0 };
+
+	const imageUrl = (id) => `https://api.scryfall.com/cards/${id}?format=image&version=png`;
 
 	function handleMouseMove(e) {
 		const offset = window.scrollY + window.innerHeight;
@@ -21,7 +25,13 @@
 		};
 	}
 
-	$: imageUrl = card ? `https://api.scryfall.com/cards/${card.id}?format=image&version=png` : null;
+	onMount(() => {
+		const tooltipElements = document.body.querySelectorAll('[data-scryfall-id]');
+		for (const elmt of tooltipElements) {
+			const img = new Image();
+			img.src = imageUrl(elmt.dataset.scryfallId);
+		}
+	});
 </script>
 
 <svelte:body on:mousemove={handleMouseMove} />
@@ -32,7 +42,7 @@
 		class="card-preview"
 		style="--tooltip-x: {tooltipPos.x}px;--tooltip-y: {tooltipPos.y}px;"
 	>
-		<img src={imageUrl} alt={card.name} />
+		<img src={imageUrl(card.id)} alt={card.name} />
 	</div>
 {/if}
 
