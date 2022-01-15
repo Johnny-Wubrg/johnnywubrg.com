@@ -1,32 +1,45 @@
-<script>
+<script lang="ts">
+	interface CardView {
+		id: string;
+		name: string;
+	}
+
+	interface TooltipPosition {
+		x: number;
+		y: number;
+	}
+
 	import { onMount } from 'svelte';
-
 	import { fade } from 'svelte/transition';
-	export let card;
-	export let tooltipPos = { x: 0, y: 0 };
 
-	const imageUrl = (id) => `https://api.scryfall.com/cards/${id}?format=image&version=png`;
+	const elementSelector = '[data-scryfall-id]';
+	let card: CardView;
+	let tooltipPos: TooltipPosition = { x: 0, y: 0 };
 
-	function handleMouseMove(e) {
+	const imageUrl = (id: string) => `https://api.scryfall.com/cards/${id}?format=image&version=png`;
+
+	function handleMouseMove(e: MouseEvent) {
+		const target = e.target as HTMLElement;
 		const offset = window.scrollY + window.innerHeight;
+
 		tooltipPos = {
-			x: e.layerX + 15,
-			y: e.layerY + 15 + 420 < offset ? e.layerY + 15 : e.layerY - 420 - 15
+			x: e.pageX + 15,
+			y: e.pageY + 15 + 420 < offset ? e.pageY + 15 : e.pageY - 420 - 15
 		};
 
-		if (!e.target.matches('[data-scryfall-id]')) {
+		if (!target.matches(elementSelector)) {
 			card = null;
 			return;
 		}
 
 		card = {
-			id: e.target.dataset.scryfallId,
-			name: e.target.innerText
+			id: target.dataset.scryfallId,
+			name: target.innerText
 		};
 	}
 
 	onMount(() => {
-		const tooltipElements = document.body.querySelectorAll('[data-scryfall-id]');
+		const tooltipElements = document.body.querySelectorAll<HTMLElement>(elementSelector);
 		for (const elmt of tooltipElements) {
 			const img = new Image();
 			img.src = imageUrl(elmt.dataset.scryfallId);
