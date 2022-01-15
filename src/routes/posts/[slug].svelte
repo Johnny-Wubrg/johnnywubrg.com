@@ -64,12 +64,12 @@
 </script>
 
 <script>
+	import { formatDate } from '@/utils/datetime';
   export let post;
-  const formatDate = (date) => new Date(date).toLocaleDateString();
+  
   const categories = post.categories?.nodes?.map(category => category.name) ?? [];
 </script>
 
-<a href="/blog" class="blog-link">&#8592; Blog</a>
 <article>
   {#if post.featuredImage}
     <img src={post.featuredImage.node.sourceUrl} alt={post.featuredImage.node.altText} />
@@ -88,9 +88,6 @@
 </article>
 
 <style>
-  .blog-link {
-    text-decoration: none;
-  }
   article {
     margin-top: 2rem;
   }
