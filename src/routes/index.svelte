@@ -1,6 +1,8 @@
 <script context="module">
-  export const prerender = true;
-  const query = `
+	import { sendQuery } from '@/utils/api';
+	export const prerender = true;
+
+	const query = `
     query getPosts {
       posts {
         nodes {
@@ -24,57 +26,41 @@
     }
   `;
 
-	export async function load({ fetch }) {
-    const response = await fetch(import.meta.env.VITE_PUBLIC_WORDPRESS_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ query }),
-    });
-
-		if (response.ok) {
-      const responseObj = await response.json();
-      const posts = responseObj.data.posts.nodes;
-
-			return {
-				props: {
-					posts
-				}
-			};
-		}
+	export async function load() {
+		const { posts } = await sendQuery(query);
 
 		return {
-			status: response.status,
-			error: new Error(`Could not load ${url}`)
+			props: {
+				posts: posts.nodes
+			}
 		};
 	}
 </script>
 
 <script>
-  import PostExcerpt from '@/components/PostExcerpt.svelte';
+	import PostExcerpt from '@/components/PostExcerpt.svelte';
 	export let posts;
 </script>
 
 <h1>Blog</h1>
 {#if posts}
-  <ul>
-    {#each posts as post}
-      <li>
-        <PostExcerpt {post} />
-      </li>
-    {/each}
-  </ul>
+	<ul>
+		{#each posts as post}
+			<li>
+				<PostExcerpt {post} />
+			</li>
+		{/each}
+	</ul>
 {:else}
-  <p>No posts found.</p>
+	<p>No posts found.</p>
 {/if}
 
 <style>
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  ul li + li {
-    margin-top: 2rem;
-  }
+	ul {
+		list-style: none;
+		padding: 0;
+	}
+	ul li + li {
+		margin-top: 2rem;
+	}
 </style>

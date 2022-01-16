@@ -1,5 +1,7 @@
 <script context="module" lang="ts">
 	export const prerender = true;
+	import { sendQuery } from '@/utils/api';
+	import DefaultPostTemplate from '@/templates/post.svelte';
 
 	const query = `
     query getPostBySlug($slug: ID!) {
@@ -36,8 +38,7 @@
   `;
 
 	const resolveTemplate = async (slugs: string[]) => {
-    const templates = [...slugs, 'post']
-		for (const slug of templates) {
+		for (const slug of slugs) {
 			try {
 				const { default: template } = await import(`../../templates/${slug}.svelte`);
 				return template;
@@ -45,41 +46,31 @@
 				continue;
 			}
 		}
+
+		return DefaultPostTemplate;
 	};
 
-	export async function load({ page, fetch }) {
-		const response = await fetch(import.meta.env.VITE_PUBLIC_WORDPRESS_API_URL, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				query,
-				variables: {
-					slug: page.params.slug
-				}
-			})
+	export async function load({ page }) {
+		const { post } = await sendQuery(query, {
+			slug: page.params.slug
 		});
 
-		if (response.ok) {
-			const responseObj = await response.json();
-			const { post } = responseObj.data;
-
-			const categories = post.categories?.nodes?.map((category) => category.slug) ?? [];
-
-			const template = await resolveTemplate(categories);
-
+		if (!post) {
 			return {
-				props: {
-					post,
-					template
-				}
+				status: 404,
+				error: new Error(`Could not load ${page.params.slug}`)
 			};
 		}
 
+		const categories = post.categories?.nodes?.map((category) => category.slug) ?? [];
+
+		const template = await resolveTemplate(categories);
+
 		return {
-			status: response.status,
-			error: new Error(`Could not load ${url}`)
+			props: {
+				post,
+				template
+			}
 		};
 	}
 </script>

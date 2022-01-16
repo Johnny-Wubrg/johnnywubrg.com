@@ -5,7 +5,7 @@
 	const categories = post.categories?.nodes?.map((category) => category.name) ?? [];
 </script>
 
-<article>
+<article class="post">
 	{#if post.featuredImage}
 		<img src={post.featuredImage.node.sourceUrl} alt={post.featuredImage.node.altText} />
 	{/if}
@@ -15,9 +15,11 @@
 	<p class="post-meta">
 		✍️ {post.author.node.name} on {formatDate(post.date)}
 	</p>
-	<slot>
-		<div>{@html post.content}</div>
-	</slot>
+  <div class="post">
+    <slot>
+      {@html post.content}
+    </slot>
+  </div>
 	{#if categories.length}
 		<div class="category-list">
 			<h4>Categorized As</h4>
@@ -40,5 +42,19 @@
 	}
 	.category-list h4 {
 		margin: 0;
+	}
+
+  
+	.post::after {
+		content: '';
+    display: block;
+		clear: both;
+	}
+  
+	.post :global(.featured-card) {
+		display: block;
+		max-width: 300px;
+		float: left;
+		margin-right: 1em;
 	}
 </style>
