@@ -5,11 +5,11 @@
 
 <article>
 	{#if post.featuredImage}
-		<a href="/posts{post.uri}">
+		<a href={post.uri}>
 			<img src={post.featuredImage.node.sourceUrl} alt={post.featuredImage.node.altText} />
 		</a>
 	{/if}
-	<a href="/posts{post.uri}">
+	<a href={post.uri}>
 		<div class="post-headline">
 			<h2>
 				{post.title}

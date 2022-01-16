@@ -38,6 +38,7 @@
 </script>
 
 <script>
+	import FeaturedCard from '@/components/FeaturedCard.svelte';
 	import PostExcerpt from '@/components/PostExcerpt.svelte';
 	export let posts;
 </script>
@@ -54,6 +55,8 @@
 {:else}
 	<p>No posts found.</p>
 {/if}
+
+<FeaturedCard />
 
 <style>
 	ul {
