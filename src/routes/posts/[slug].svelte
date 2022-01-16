@@ -1,7 +1,7 @@
-<script context="module">
-  export const prerender = true;
+<script context="module" lang="ts">
+	export const prerender = true;
 
-  const query = `
+	const query = `
     query getPostBySlug($slug: ID!) {
       post(id: $slug, idType: SLUG) {
         date
@@ -15,6 +15,7 @@
         categories {
           nodes {
             name
+            slug
           }
         }
         featuredImage {
@@ -31,27 +32,44 @@
     }
   `;
 
-  export async function load({ page, fetch }) {
-    const response = await fetch(import.meta.env.VITE_PUBLIC_WORDPRESS_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        query,
-        variables: {
-          slug: page.params.slug,
-        }
-      }),
-    });
+	const resolveTemplate = async (slugs: string[]) => {
+    const templates = [...slugs, 'post']
+		for (const slug of templates) {
+			try {
+				const { default: template } = await import(`../../templates/${slug}.svelte`);
+				return template;
+			} catch {
+				continue;
+			}
+		}
+	};
+
+	export async function load({ page, fetch }) {
+		const response = await fetch(import.meta.env.VITE_PUBLIC_WORDPRESS_API_URL, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				query,
+				variables: {
+					slug: page.params.slug
+				}
+			})
+		});
 
 		if (response.ok) {
-      const responseObj = await response.json();
-      const { post } = responseObj.data;
+			const responseObj = await response.json();
+			const { post } = responseObj.data;
+
+			const categories = post.categories?.nodes?.map((category) => category.slug) ?? [];
+
+			const template = await resolveTemplate(categories);
 
 			return {
 				props: {
-					post
+					post,
+					template
 				}
 			};
 		}
@@ -64,42 +82,8 @@
 </script>
 
 <script>
-	import { formatDate } from '@/utils/datetime';
-  export let post;
-  
-  const categories = post.categories?.nodes?.map(category => category.name) ?? [];
+	export let post;
+	export let template;
 </script>
 
-<article>
-  {#if post.featuredImage}
-    <img src={post.featuredImage.node.sourceUrl} alt={post.featuredImage.node.altText} />
-  {/if}
-  <h1>{post.title}</h1>
-  <p class="post-meta">
-    ✍️ {post.author.node.name} on {formatDate(post.date)}
-  </p>
-  <div>{@html post.content}</div>
-  {#if categories.length}
-    <div class="category-list">
-      <h4>Categorized As</h4>
-      <p>{categories.join(', ')}</p>
-    </div>
-  {/if}
-</article>
-
-<style>
-  article {
-    margin-top: 2rem;
-  }
-  article img {
-    max-width: 100%;
-  }
-  .category-list {
-    border-top: 2px solid var(--color-gray-9);
-    margin-top: 2.5rem;
-    padding-top: 2rem;
-  }
-  .category-list h4 {
-    margin: 0;
-  }
-</style>
+<svelte:component this={template} {post} />
