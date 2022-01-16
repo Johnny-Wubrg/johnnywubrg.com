@@ -29,3 +29,14 @@
   </a>
 </div>
 {/if}
+
+<style lang="scss">
+.featured-card {
+  max-width: 100%;
+
+  &-image {
+    display: block;
+    max-width: 100%;
+  }
+}
+</style>

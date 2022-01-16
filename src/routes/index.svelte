@@ -38,25 +38,30 @@
 </script>
 
 <script>
-	import FeaturedCard from '@/components/FeaturedCard.svelte';
+	import Sidebar from '@/components/Sidebar.svelte';
 	import PostExcerpt from '@/components/PostExcerpt.svelte';
 	export let posts;
 </script>
 
 <h1>Blog</h1>
-{#if posts}
-	<ul>
-		{#each posts as post}
-			<li>
-				<PostExcerpt {post} />
-			</li>
-		{/each}
-	</ul>
-{:else}
-	<p>No posts found.</p>
-{/if}
-
-<FeaturedCard />
+<div class="content-wrap">
+	<div class="content-main">
+		{#if posts}
+			<ul>
+				{#each posts as post}
+					<li>
+						<PostExcerpt {post} />
+					</li>
+				{/each}
+			</ul>
+		{:else}
+			<p>No posts found.</p>
+		{/if}
+	</div>
+	<aside class="content-aside">
+		<Sidebar />
+	</aside>
+</div>
 
 <style>
 	ul {
@@ -65,5 +70,19 @@
 	}
 	ul li + li {
 		margin-top: 2rem;
+	}
+
+	.content-wrap {
+		display: flex;
+		position: relative;
+		align-items: flex-start;
+	}
+
+	.content-main {
+		flex: 1 1 auto;
+	}
+
+	.content-aside {
+		flex: 0 0 30%;
 	}
 </style>
