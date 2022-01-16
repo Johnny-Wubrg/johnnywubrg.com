@@ -28,6 +28,9 @@
             }
           }
         }
+				featuredCardSettings {
+					featuredCard
+				}
       }
     }
   `;
