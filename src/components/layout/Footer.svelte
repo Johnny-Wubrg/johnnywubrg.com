@@ -22,7 +22,7 @@
 					<p>
 						{#each social as item, i}
 							{#if i !== 0} | {/if}
-							<a href={item.path}>{item.label}</a>
+							<a href={item.path} target="_blank">{item.label}</a>
 						{/each}
 					</p>
 				</div>
@@ -30,9 +30,10 @@
 		</div>
 		<div class="footer-bottom">
 			<p class="disclaimer">
-				<b>Magic: the Gathering</b> and <b>Dungeons &amp; Dragons</b> are copyright Wizards of the Coast,
-				LLC, a subsidiary of Hasbro, Inc. This website is unofficial fan content permitted under the
-				Wizards of the Coast Fan Content Policy and is not affiliated with Wizards of the Coast.
+				<b>Magic: the Gathering</b> is copyright Wizards of the Coast, LLC, a subsidiary of Hasbro, Inc.
+				Portions of this website are unofficial fan content permitted under the Wizards of the Coast
+				Fan Content Policy. Johnny Wubrg is not produced by, endorsed by, supported by, or affiliated
+				with Wizards of the Coast.
 			</p>
 		</div>
 	</div>
