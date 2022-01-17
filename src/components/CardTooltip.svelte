@@ -15,6 +15,8 @@
 	const elementSelector = '[data-scryfall-id]';
 	let card: CardView;
 	let tooltipPos: TooltipPosition = { x: 0, y: 0 };
+	const width = 220;
+	const height = (width * 5) / 7;
 
 	const imageUrl = (id: string) => `https://api.scryfall.com/cards/${id}?format=image&version=png`;
 
@@ -24,7 +26,7 @@
 
 		tooltipPos = {
 			x: e.pageX + 15,
-			y: e.pageY + 15 + 420 < offset ? e.pageY + 15 : e.pageY - 420 - 15
+			y: e.pageY + 15 + height < offset ? e.pageY + 15 : e.pageY - height - 15
 		};
 
 		if (!target.matches(elementSelector)) {
@@ -53,7 +55,7 @@
 	<div
 		transition:fade
 		class="card-preview"
-		style="--tooltip-x: {tooltipPos.x}px;--tooltip-y: {tooltipPos.y}px;"
+		style="--tooltip-x: {tooltipPos.x}px;--tooltip-y: {tooltipPos.y}px;--tooltip-width: {width}px"
 	>
 		<img src={imageUrl(card.id)} alt={card.name} />
 	</div>
@@ -64,11 +66,10 @@
 		position: absolute;
 		left: var(--tooltip-x);
 		top: var(--tooltip-y);
-		width: 300px;
-    img {
-      display: block;
-      width: 100%;
-    }
+		width: var(--tooltip-width);
+		img {
+			display: block;
+			width: 100%;
+		}
 	}
-
 </style>

@@ -59,7 +59,7 @@
 		if (!post) {
 			return {
 				status: 404,
-				error: new Error(`Could not load ${page.params.slug}`)
+				error: new Error(`Not found: ${page.params.slug}`)
 			};
 		}
 
