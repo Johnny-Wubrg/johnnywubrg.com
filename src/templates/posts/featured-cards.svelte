@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Post from './post.svelte';
+	import Post from './default.svelte';
 	export let post;
 	const featuredCardId = post.featuredCardSettings.featuredCard;
 
@@ -8,7 +8,9 @@
 
 <Post {post}>
 	<img class="featured-card" src={imageUrl(featuredCardId)} alt={post.title} width="300" />
-	{@html post.content}
+	{#if post.content}
+		{@html post.content}
+	{/if}
 </Post>
 
 <style>

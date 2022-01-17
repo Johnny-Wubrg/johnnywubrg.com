@@ -1,6 +1,6 @@
 <script>
 	import { formatDate } from '@/utils/datetime';
-import { getContext } from 'svelte';
+	import { getContext } from 'svelte';
 	export let post;
 
 	const title = getContext('siteTitle');
@@ -32,11 +32,13 @@ import { getContext } from 'svelte';
 	<p class="post-meta">
 		{post.author.node.name} on {formatDate(post.date)}
 	</p>
-  <div class="post">
-    <slot>
-      {@html post.content}
-    </slot>
-  </div>
+	<div class="post">
+		<slot>
+			{#if post.content}
+				{@html post.content}
+			{/if}
+		</slot>
+	</div>
 	{#if categories.length}
 		<div class="category-list">
 			<h4>Categorized As</h4>
@@ -61,13 +63,12 @@ import { getContext } from 'svelte';
 		margin: 0;
 	}
 
-  
 	.post::after {
 		content: '';
-    display: block;
+		display: block;
 		clear: both;
 	}
-  
+
 	.post :global(.featured-card) {
 		display: block;
 		max-width: 300px;

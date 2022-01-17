@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
 	export const prerender = true;
 	import { sendQuery } from '@/utils/api';
-	import DefaultPostTemplate from '@/templates/post.svelte';
+	import DefaultPostTemplate from '@/templates/posts/default.svelte';
 
 	const gql = String.raw;
 	const query = gql`
@@ -45,7 +45,7 @@
 	const resolveTemplate = async (slugs: string[]) => {
 		for (const slug of slugs) {
 			try {
-				const { default: template } = await import(`../../templates/${slug}.svelte`);
+				const { default: template } = await import(`../../templates/posts/${slug}.svelte`);
 				return template;
 			} catch {
 				continue;
