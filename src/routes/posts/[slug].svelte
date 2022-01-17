@@ -34,6 +34,10 @@
 				featuredCardSettings {
 					featuredCard
 				}
+				seo {
+					title
+					description
+				}
       }
     }
   `;

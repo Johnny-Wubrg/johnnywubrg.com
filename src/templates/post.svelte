@@ -1,9 +1,26 @@
 <script>
 	import { formatDate } from '@/utils/datetime';
+import { getContext } from 'svelte';
 	export let post;
+
+	const title = getContext('siteTitle');
 
 	const categories = post.categories?.nodes?.map((category) => category.name) ?? [];
 </script>
+
+<svelte:head>
+	{#if post.seo?.title}
+		<title>{post.seo.title}</title>
+	{:else}
+		<title>{title} | {post.title}</title>
+	{/if}
+
+	{#if post.seo?.description}
+		<meta name="description" content={post.seo.description} />
+	{/if}
+
+	<meta name="author" content={post.author.node.name} />
+</svelte:head>
 
 <article class="post">
 	{#if post.featuredImage}
@@ -13,7 +30,7 @@
 		<h1>{post.title}</h1>
 	</slot>
 	<p class="post-meta">
-		✍️ {post.author.node.name} on {formatDate(post.date)}
+		{post.author.node.name} on {formatDate(post.date)}
 	</p>
   <div class="post">
     <slot>

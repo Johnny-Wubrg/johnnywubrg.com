@@ -65,7 +65,8 @@
 	const getMenu = (locationId) =>
 		menus.find((e) => e.locations.includes(locationId)).menuItems.nodes;
 
-	setContext('title', title);
+	setContext('siteTitle', title);
+	setContext('siteDescription', description);
 
 	const footer = {
 		title,
@@ -74,6 +75,14 @@
 		social: getMenu('SOCIAL')
 	};
 </script>
+
+<svelte:head>
+	<title>
+		{title}
+	</title>
+
+	<meta name="description" content={description} />
+</svelte:head>
 
 <Header {title} menu={getMenu('MENU_1')} />
 

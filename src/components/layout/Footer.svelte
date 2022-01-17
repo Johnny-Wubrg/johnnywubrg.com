@@ -35,6 +35,11 @@
 				Fan Content Policy. Johnny Wubrg is not produced by, endorsed by, supported by, or affiliated
 				with Wizards of the Coast.
 			</p>
+
+			<p class="disclaimer">
+				Portions of this site is powered by <b>Scryfall</b>, which is not an affiliate of Johnny
+				Wubrg.
+			</p>
 		</div>
 	</div>
 </footer>
@@ -54,10 +59,11 @@
 			display: flex;
 			justify-content: space-between;
 		}
-	}
 
-	.disclaimer {
-		font-size: 0.75em;
-		font-style: italic;
+		.disclaimer {
+			font-size: 0.75em;
+			font-style: italic;
+			margin-bottom: 1em;
+		}
 	}
 </style>

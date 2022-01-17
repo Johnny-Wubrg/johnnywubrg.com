@@ -7,6 +7,15 @@
 			page(id: $slug, idType: URI) {
 				content
 				title
+				author {
+					node {
+						name
+					}
+				}
+				seo {
+					title
+					description
+				}
 			}
 		}
 	`;
@@ -32,8 +41,24 @@
 </script>
 
 <script>
+	import { getContext } from 'svelte';
 	export let page;
+	const title = getContext('siteTitle');
 </script>
+
+<svelte:head>
+	{#if page.seo?.title}
+		<title>{page.seo.title}</title>
+	{:else}
+		<title>{title} | {page.title}</title>
+	{/if}
+
+	{#if page.seo?.description}
+		<meta name="description" content={page.seo.description} />
+	{/if}
+
+	<meta name="author" content={page.author.node.name} />
+</svelte:head>
 
 <div class="content-wrap">
 	<div class="content-main">
