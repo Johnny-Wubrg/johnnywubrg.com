@@ -1,5 +1,6 @@
 :root {
 	--border-radius: 8px;
+	--container-width: 1200px;
 
 	/* Colors */
 	--color-white: #fff;
@@ -72,7 +73,7 @@ a {
 }
 
 main {
-	padding: 2rem;
-	max-width: 1080px;
+	padding: 1rem;
+	max-width: var(--container-width);
 	margin: 0 auto 12rem;
 }

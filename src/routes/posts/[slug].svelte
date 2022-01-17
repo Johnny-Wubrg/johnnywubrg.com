@@ -3,7 +3,8 @@
 	import { sendQuery } from '@/utils/api';
 	import DefaultPostTemplate from '@/templates/post.svelte';
 
-	const query = `
+	const gql = String.raw;
+	const query = gql`
     query getPostBySlug($slug: ID!) {
       post(id: $slug, idType: SLUG) {
         date

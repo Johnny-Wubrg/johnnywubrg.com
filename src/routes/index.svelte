@@ -2,29 +2,30 @@
 	import { sendQuery } from '@/utils/api';
 	export const prerender = true;
 
-	const query = `
-    query getPosts {
-      posts {
-        nodes {
-          databaseId
-          uri
-          title
-          excerpt
-          date
-          featuredImage {
-            node {
-              sourceUrl
-              altText
-              mediaDetails {
-                width
-                height
-              }
-            }
-          }
-        }
-      }
-    }
-  `;
+	const gql = String.raw;
+	const query = gql`
+		query getPosts {
+			posts {
+				nodes {
+					databaseId
+					uri
+					title
+					excerpt
+					date
+					featuredImage {
+						node {
+							sourceUrl
+							altText
+							mediaDetails {
+								width
+								height
+							}
+						}
+					}
+				}
+			}
+		}
+	`;
 
 	export async function load() {
 		const { posts } = await sendQuery(query);
@@ -38,12 +39,12 @@
 </script>
 
 <script>
-	import Sidebar from '@/components/Sidebar.svelte';
+	import Sidebar from '@/components/layout/Sidebar.svelte';
 	import PostExcerpt from '@/components/PostExcerpt.svelte';
 	export let posts;
 </script>
 
-<h1>Blog</h1>
+<h1>Latest Posts</h1>
 <div class="content-wrap">
 	<div class="content-main">
 		{#if posts}

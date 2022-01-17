@@ -4,39 +4,40 @@
 	let card;
 
 	onMount(async () => {
-		const query = `
-    query getFeaturedCard {
-      featuredCard {
-        label
-        card_name
-        image
-        post_uri
-        post_title
-        archive_uri
-      }
-    }
-    `;
+		const gql = String.raw;
+		const query = gql`
+			query getFeaturedCard {
+				featuredCard {
+					label
+					card_name
+					image
+					post_uri
+					post_title
+					archive_uri
+				}
+			}
+		`;
 		const { featuredCard } = await sendQuery(query);
 		card = featuredCard;
 	});
 </script>
 
 {#if card}
-<div class="featured-card">
-  <h3 class="featured-card-label">{card.label}</h3>
-  <a href="/posts{card.post_uri}" class="featured-card-link">
-    <img class="featured-card-image" src={card.image} alt={card.card_name} />
-  </a>
-</div>
+	<div class="featured-card">
+		<h3 class="featured-card-label">{card.label}</h3>
+		<a href="/posts{card.post_uri}" class="featured-card-link">
+			<img class="featured-card-image" src={card.image} alt={card.card_name} />
+		</a>
+	</div>
 {/if}
 
 <style lang="scss">
-.featured-card {
-  max-width: 100%;
+	.featured-card {
+		max-width: 100%;
 
-  &-image {
-    display: block;
-    max-width: 100%;
-  }
-}
+		&-image {
+			display: block;
+			max-width: 100%;
+		}
+	}
 </style>

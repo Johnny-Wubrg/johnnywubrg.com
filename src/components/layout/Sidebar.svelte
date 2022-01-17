@@ -1,5 +1,3 @@
-
-
 <script>
 	import FeaturedCard from '@/components/FeaturedCard.svelte';
 </script>
