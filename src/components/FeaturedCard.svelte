@@ -1,35 +1,13 @@
 <script>
-	import { sendQuery } from '@/utils/api';
-	import { onMount } from 'svelte';
-	import Loader from './Loader.svelte';
-
-	const gql = String.raw;
-	const query = gql`
-		query getFeaturedCard {
-			featuredCard {
-				label
-				card_name
-				image
-				post_uri
-				post_title
-				archive_uri
-			}
-		}
-	`;
-
-	let promise = sendQuery(query);
+	export let card;
 </script>
 
-{#await promise}
-	<Loader />
-{:then { featuredCard: card }}
-	<div class="featured-card">
-		<h3 class="featured-card-label">{card.label}</h3>
-		<a href="/posts{card.post_uri}" class="featured-card-link">
-			<img class="featured-card-image" src={card.image} alt={card.card_name} />
-		</a>
-	</div>
-{/await}
+<div class="featured-card">
+	<h3 class="featured-card-label">{card.label}</h3>
+	<a href="/posts{card.post_uri}" class="featured-card-link">
+		<img class="featured-card-image" src={card.image} alt={card.card_name} />
+	</a>
+</div>
 
 <style lang="scss">
 	.featured-card {

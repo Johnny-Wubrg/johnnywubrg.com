@@ -24,15 +24,24 @@
 					}
 				}
 			}
+      featuredCard {
+				label
+				card_name
+				image
+				post_uri
+				post_title
+				archive_uri
+			}
 		}
 	`;
 
 	export async function load() {
-		const { posts } = await sendQuery(query);
+		const { posts, featuredCard } = await sendQuery(query);
 
 		return {
 			props: {
-				posts: posts.nodes
+				posts: posts.nodes,
+        featuredCard
 			}
 		};
 	}
@@ -42,6 +51,7 @@
 	import Sidebar from '@/components/layout/Sidebar.svelte';
 	import PostList from '@/components/PostList.svelte';
 	export let posts;
+  export let featuredCard;
 </script>
 
 <div class="content-wrap">
@@ -50,7 +60,7 @@
     <PostList {posts} />
 	</div>
 	<aside class="content-aside">
-		<Sidebar />
+		<Sidebar card={featuredCard} />
 	</aside>
 </div>
 
