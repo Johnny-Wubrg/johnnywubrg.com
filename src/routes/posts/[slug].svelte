@@ -69,12 +69,10 @@
 
 		const categories = post.categories?.nodes?.map((category) => category.slug) ?? [];
 
-		const template = await resolveTemplate(categories);
-
 		return {
 			props: {
 				post,
-				template
+				template: await resolveTemplate(categories)
 			}
 		};
 	}

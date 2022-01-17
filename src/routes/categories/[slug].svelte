@@ -1,5 +1,6 @@
 <script context="module" lang="ts">
 	import { sendQuery } from '@/utils/api';
+	import DefaultCategoryTemplate from '@/templates/categories/default.svelte';
 
 	const gql = String.raw;
 	const query = gql`
@@ -7,6 +8,7 @@
 			category(idType: SLUG, id: $slug) {
 				name
 				description
+				slug
 				posts {
 					nodes {
 						databaseId
@@ -24,11 +26,25 @@
 								}
 							}
 						}
+						featuredCardSettings {
+							featuredCard
+						}
 					}
 				}
 			}
 		}
 	`;
+
+	const resolveTemplate = async (category) => {
+		try {
+			const { default: template } = await import(
+				`../../templates/categories/${category.slug}.svelte`
+			);
+			return template;
+		} catch {
+			return DefaultCategoryTemplate;
+		}
+	};
 
 	export async function load({ page }) {
 		const { category } = await sendQuery(query, {
@@ -44,46 +60,16 @@
 
 		return {
 			props: {
-				category
+				category,
+				template: await resolveTemplate(category)
 			}
 		};
 	}
 </script>
 
 <script>
-	import PostList from '@/components/PostList.svelte';
-	import { getContext } from 'svelte';
 	export let category;
-	const title = getContext('siteTitle');
+	export let template;
 </script>
 
-<svelte:head>
-	<title>
-		{title} | {category.name}
-	</title>
-	{#if category.description}
-		<meta name="description" content={category.description} />
-	{/if}
-</svelte:head>
-
-<div class="content-wrap">
-	<div class="content-main">
-		<div class="category-info">
-			<h1>{category.name}</h1>
-			{#if category.description}
-				<p>{category.description}</p>
-			{/if}
-		</div>
-		<PostList posts={category.posts.nodes} />
-	</div>
-</div>
-
-<style lang="scss">
-	.category-info {
-		margin-bottom: 2em;
-		h1,
-		p {
-			margin: 0;
-		}
-	}
-</style>
+<svelte:component this={template} {category} />
