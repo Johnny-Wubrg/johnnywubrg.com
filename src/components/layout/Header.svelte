@@ -1,4 +1,5 @@
 <script>
+  import NavList from './NavList.svelte';
 	export let menu;
 	export let title;
 </script>
@@ -9,13 +10,7 @@
 			<a href="/">{title}</a>
 		</h1>
 		<nav class="nav">
-			<ul class="nav-list">
-				{#each menu as item}
-					<li class="nav-item">
-						<a class="nav-link" href={item.path}>{item.label}</a>
-					</li>
-				{/each}
-			</ul>
+			<NavList {menu} />
 		</nav>
 	</div>
 
@@ -24,10 +19,19 @@
 
 <style lang="scss">
 	.header {
+		position: sticky;
+		top: 0;
+		background: var(--color-white);
 		&-wrap {
 			max-width: var(--container-width);
 			margin: auto;
-			padding: 1rem;
+			padding: 0 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 		}
+    &-brand {
+      margin: 0;
+    }
 	}
 </style>
