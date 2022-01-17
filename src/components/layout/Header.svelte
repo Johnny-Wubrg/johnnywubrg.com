@@ -22,6 +22,7 @@
 		position: sticky;
 		top: 0;
 		background: var(--color-white);
+		z-index: 90;
 		&-wrap {
 			max-width: var(--container-width);
 			margin: auto;
