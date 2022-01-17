@@ -44,10 +44,10 @@
 	export let posts;
 </script>
 
-<h1>Latest Posts</h1>
 <div class="content-wrap">
-	<div class="content-main">
-		{#if posts}
+  <div class="content-main">
+    <h1>Latest Posts</h1>
+    {#if posts}
 			<ul>
 				{#each posts as post}
 					<li>
@@ -84,6 +84,6 @@
 	}
 
 	.content-aside {
-		flex: 0 0 30%;
+		flex: 0 0 20%;
 	}
 </style>
