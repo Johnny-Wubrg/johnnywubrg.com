@@ -9,16 +9,23 @@
 			<img src={post.featuredImage.node.sourceUrl} alt={post.featuredImage.node.altText} />
 		</a>
 	{/if}
-	<a href={post.uri}>
-		<div class="post-headline">
-			<h2>
+	<div class="post-headline">
+		<h2>
+			<a href={post.uri}>
 				{post.title}
-			</h2>
-			<span>{formatDate(post.date)}</span>
-		</div>
-	</a>
+			</a>
+		</h2>
+		<span>{formatDate(post.date)}</span>
+	</div>
 	<div>{@html post.excerpt}</div>
 </article>
 
-<style>
+<style lang="scss">
+	.post-headline {
+		h2 {
+			margin: 0;
+			display: inline-block;
+			margin-right: 0.5rem;
+		}
+	}
 </style>

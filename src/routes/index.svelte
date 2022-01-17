@@ -40,24 +40,14 @@
 
 <script>
 	import Sidebar from '@/components/layout/Sidebar.svelte';
-	import PostExcerpt from '@/components/PostExcerpt.svelte';
+	import PostList from '@/components/PostList.svelte';
 	export let posts;
 </script>
 
 <div class="content-wrap">
   <div class="content-main">
     <h1>Latest Posts</h1>
-    {#if posts}
-			<ul>
-				{#each posts as post}
-					<li>
-						<PostExcerpt {post} />
-					</li>
-				{/each}
-			</ul>
-		{:else}
-			<p>No posts found.</p>
-		{/if}
+    <PostList {posts} />
 	</div>
 	<aside class="content-aside">
 		<Sidebar />
@@ -65,14 +55,6 @@
 </div>
 
 <style>
-	ul {
-		list-style: none;
-		padding: 0;
-	}
-	ul li + li {
-		margin-top: 2rem;
-	}
-
 	.content-wrap {
 		display: flex;
 		position: relative;
