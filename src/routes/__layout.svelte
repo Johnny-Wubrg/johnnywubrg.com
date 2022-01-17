@@ -87,4 +87,18 @@
 
 <style lang="scss" global>
 	@import '../styles/main';
+
+	.content-wrap {
+		display: flex;
+		position: relative;
+		align-items: flex-start;
+	}
+
+	.content-main {
+		flex: 1 1 auto;
+	}
+
+	.content-aside {
+		flex: 0 0 20%;
+	}
 </style>
