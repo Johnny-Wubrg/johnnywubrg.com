@@ -54,9 +54,9 @@
 
 <script>
 	import CardTooltip from '@/components/CardTooltip.svelte';
+	import { setContext } from 'svelte';
 	import Header from '@/components/layout/Header.svelte';
 	import Footer from '@/components/layout/Footer.svelte';
-	import { setContext } from 'svelte';
 
 	export let menus;
 	export let title;
