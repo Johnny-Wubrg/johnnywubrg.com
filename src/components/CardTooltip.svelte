@@ -1,6 +1,6 @@
 <script lang="ts">
 	interface CardView {
-		id: string;
+		image: string;
 		name: string;
 	}
 
@@ -35,7 +35,7 @@
 		}
 
 		card = {
-			id: target.dataset.scryfallId,
+			image: target.dataset.imageUrl ?? imageUrl(target.dataset.scryfallId),
 			name: target.innerText
 		};
 	}
@@ -44,7 +44,7 @@
 		const tooltipElements = document.body.querySelectorAll<HTMLElement>(elementSelector);
 		for (const elmt of tooltipElements) {
 			const img = new Image();
-			img.src = imageUrl(elmt.dataset.scryfallId);
+			img.src = elmt.dataset.imageUrl ?? imageUrl(elmt.dataset.scryfallId);
 		}
 	});
 </script>
@@ -57,7 +57,7 @@
 		class="card-preview"
 		style="--tooltip-x: {tooltipPos.x}px;--tooltip-y: {tooltipPos.y}px;--tooltip-width: {width}px"
 	>
-		<img src={imageUrl(card.id)} alt={card.name} />
+		<img src={card.image} alt={card.name} />
 	</div>
 {/if}
 

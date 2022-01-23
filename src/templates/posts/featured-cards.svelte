@@ -3,7 +3,8 @@
 	export let post;
 	const featuredCardId = post.featuredCardSettings.featuredCard;
 
-	const imageUrl = (id: string) => `https://api.scryfall.com/cards/${id}?format=image&version=png`;
+	const imageUrl = (id: string) =>
+		`http://admin.johnny-wubrg.local/wp-json/wp-mtg/v1/cards/${id}/image.png`;
 </script>
 
 <Template {post}>

@@ -4,7 +4,8 @@
 	import Template from './default.svelte';
 	export let category;
 
-	const imageUrl = (id: string) => `https://api.scryfall.com/cards/${id}?format=image&version=png`;
+	const imageUrl = (id: string) =>
+		`http://admin.johnny-wubrg.local/wp-json/wp-mtg/v1/cards/${id}/image.png`;
 
 	const posts = category.posts.nodes;
 </script>
@@ -49,35 +50,35 @@
 
 	.card {
 		position: relative;
-    border-radius: 4.75% / 3.5%;
-    overflow: hidden;
-    &:hover {
-      .card-name {
-        opacity: 1;
-      }
-    }
+		border-radius: 4.75% / 3.5%;
+		overflow: hidden;
+		&:hover {
+			.card-name {
+				opacity: 1;
+			}
+		}
 		img {
 			display: block;
 			max-width: 100%;
 		}
 		&-name {
 			margin: 0;
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background: rgba(#000, 70%);
-      color: var(--color-white);
-      font-size: 2em;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 300ms;
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background: rgba(#000, 70%);
+			color: var(--color-white);
+			font-size: 2em;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			opacity: 0;
+			transition: opacity 300ms;
 		}
-    &-date {
-      margin: 0.5em 0 0;
-    }
+		&-date {
+			margin: 0.5em 0 0;
+		}
 	}
 </style>
