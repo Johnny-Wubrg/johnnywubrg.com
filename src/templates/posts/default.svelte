@@ -55,7 +55,7 @@
 		max-width: 100%;
 	}
 	.category-list {
-		border-top: 2px solid var(--color-gray-9);
+		border-top: 2px solid var(--color-border);
 		margin-top: 2.5rem;
 		padding-top: 2rem;
 	}

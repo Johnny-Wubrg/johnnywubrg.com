@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Post from '@/templates/post.svelte';
-
 	interface Card {
 		color: string;
 		zIndex: number;

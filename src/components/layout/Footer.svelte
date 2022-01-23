@@ -32,13 +32,12 @@
 			<p class="disclaimer">
 				<b>Magic: the Gathering</b> is copyright Wizards of the Coast, LLC, a subsidiary of Hasbro, Inc.
 				Portions of this website are unofficial fan content permitted under the Wizards of the Coast
-				Fan Content Policy. Johnny Wubrg is not produced by, endorsed by, supported by, or affiliated
+				Fan Content Policy. This site is not produced by, endorsed by, supported by, or affiliated
 				with Wizards of the Coast.
 			</p>
 
 			<p class="disclaimer">
-				Portions of this site is powered by <b>Scryfall</b>, which is not an affiliate of Johnny
-				Wubrg.
+				Portions of this site is powered by <b>Scryfall</b>, which is not an affiliate of this site.
 			</p>
 		</div>
 	</div>

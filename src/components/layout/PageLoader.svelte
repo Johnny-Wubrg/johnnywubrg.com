@@ -48,12 +48,12 @@
 	.progress-bar {
 		width: 100%;
 		height: 0.25rem;
-		background-color: var(--color-gray-9);
+		background-color: var(--color-border);
 	}
 	.progress-sliver {
 		width: var(--width);
 		opacity: var(--opacity);
-		background-color: var(--color-yellow-5);
+		background-color: var(--color-tint);
 		height: 100%;
 	}
 </style>
