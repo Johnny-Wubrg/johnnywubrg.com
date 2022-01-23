@@ -1,4 +1,6 @@
 <script lang="ts">
+import { getCardImageUri } from '@/utils/api';
+
 	interface CardView {
 		image: string;
 		name: string;
@@ -18,8 +20,6 @@
 	const width = 220;
 	const height = (width * 5) / 7;
 
-	const imageUrl = (id: string) => `https://api.scryfall.com/cards/${id}?format=image&version=png`;
-
 	function handleMouseMove(e: MouseEvent) {
 		const target = e.target as HTMLElement;
 		const offset = window.scrollY + window.innerHeight;
@@ -35,7 +35,7 @@
 		}
 
 		card = {
-			image: target.dataset.imageUrl ?? imageUrl(target.dataset.scryfallId),
+			image: target.dataset.imageUrl ?? getCardImageUri(target.dataset.scryfallId),
 			name: target.innerText
 		};
 	}
@@ -44,7 +44,7 @@
 		const tooltipElements = document.body.querySelectorAll<HTMLElement>(elementSelector);
 		for (const elmt of tooltipElements) {
 			const img = new Image();
-			img.src = elmt.dataset.imageUrl ?? imageUrl(elmt.dataset.scryfallId);
+			img.src = elmt.dataset.imageUrl ?? getCardImageUri(elmt.dataset.scryfallId);
 		}
 	});
 </script>

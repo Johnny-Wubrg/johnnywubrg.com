@@ -1,5 +1,7 @@
+import { graphqlUri, restMtgUri } from '@/config/api';
+
 export const sendQuery = async (query: string, variables: Record<string, string> = {}) => {
-	const response = await fetch(import.meta.env.VITE_PUBLIC_WORDPRESS_API_URL, {
+	const response = await fetch(graphqlUri, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -17,3 +19,5 @@ export const sendQuery = async (query: string, variables: Record<string, string>
 	const responseObj = await response.json();
 	return responseObj.data;
 };
+
+export const getCardImageUri = (id: string) => `${restMtgUri}/cards/${id}/image.png`;
