@@ -3,9 +3,13 @@
 	import NavList from './NavList.svelte';
 	export let menu;
 	export let title;
+
+	let scrolled;
 </script>
 
-<header class="header">
+<svelte:window bind:scrollY={scrolled}/>
+
+<header class="header" class:scrolled>
 	<PageLoader />
 	<div class="header-wrap">
 		<h1 class="header-brand">
@@ -15,8 +19,6 @@
 			<NavList {menu} />
 		</nav>
 	</div>
-
-	<!-- {JSON.stringify(menu)} -->
 </header>
 
 <style lang="scss">
@@ -35,6 +37,16 @@
 		}
 		&-brand {
 			margin: 0;
+			transition: font-size 200ms;
+		}
+		&.scrolled {
+			.header-brand {
+				font-size: 1.2em;
+			}
+
+			:global(.nav-item-root) {
+				font-size: 0.85em;
+			}
 		}
 	}
 </style>

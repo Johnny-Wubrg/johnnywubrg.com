@@ -45,6 +45,7 @@
 		}
 		&-item {
 			position: relative;
+			transition: font-size 200ms;
 			&:hover,
 			&:focus,
 			&:focus-within {
@@ -53,6 +54,7 @@
 				}
 			}
       &-child {
+				font-size: 1em;
         white-space: nowrap;
       }
 		}

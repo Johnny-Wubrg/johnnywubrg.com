@@ -46,6 +46,8 @@
 
 <style>
 	.progress-bar {
+		position: absolute;
+		top: 0;
 		width: 100%;
 		height: 0.25rem;
 		background-color: rgba(#000, 0.1);
