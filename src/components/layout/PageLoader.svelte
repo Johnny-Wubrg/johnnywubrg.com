@@ -48,7 +48,7 @@
 	.progress-bar {
 		width: 100%;
 		height: 0.25rem;
-		background-color: var(--color-border);
+		background-color: rgba(#000, 0.1);
 	}
 	.progress-sliver {
 		width: var(--width);
