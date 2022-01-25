@@ -3,10 +3,10 @@
 
 	let scroll: number;
 
-	$: offset = Math.round(scroll * 0.6);
+	$: offset = Math.round((scroll ?? 0) * 0.6);
 </script>
 
-<svelte:window bind:scrollY={scroll} on:scroll={(e) => console.log(e)} />
+<svelte:window bind:scrollY={scroll} />
 
 <div class="hero" style="--background: url({src}); --offset: {offset}px">
 	<div class="hero-content">
