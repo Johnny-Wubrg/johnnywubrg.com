@@ -1,4 +1,5 @@
 @import 'themes';
+@import 'partials';
 
 :root {
 	--container-width: 1200px;
@@ -71,8 +72,6 @@ a {
 	color: var(--color-link);
 }
 
-main {
-	padding: 1rem;
-	max-width: var(--container-width);
-	margin: 0 auto 12rem;
+.container {
+	@extend %container;
 }

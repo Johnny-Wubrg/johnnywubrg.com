@@ -60,7 +60,7 @@
 	<meta name="author" content={page.author.node.name} />
 </svelte:head>
 
-<div class="content-wrap">
+<div class="content-wrap container">
 	<div class="content-main">
 		<div class="category-info">
 			<h1>{page.title}</h1>

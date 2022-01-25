@@ -1,4 +1,5 @@
 <script>
+	import ParallaxHero from '@/components/ParallaxHero.svelte';
 	import { formatDate } from '@/utils/datetime';
 	import { getContext } from 'svelte';
 	export let post;
@@ -22,54 +23,66 @@
 	<meta name="author" content={post.author.node.name} />
 </svelte:head>
 
-<article class="post">
+<article class="post-wrap">
 	{#if post.featuredImage}
-		<img src={post.featuredImage.node.sourceUrl} alt={post.featuredImage.node.altText} />
-	{/if}
-	<slot name="title">
-		<h1>{post.title}</h1>
-	</slot>
-	<p class="post-meta">
-		{post.author.node.name} on {formatDate(post.date)}
-	</p>
-	<div class="post">
-		<slot>
-			{#if post.content}
-				{@html post.content}
-			{/if}
-		</slot>
-	</div>
-	{#if categories.length}
-		<div class="category-list">
-			<h4>Categorized As</h4>
-			<p>{categories.join(', ')}</p>
+		<ParallaxHero src={post.featuredImage.node.sourceUrl}>
+			<slot name="title">
+				<h1>{post.title}</h1>
+			</slot>
+			<p class="post-meta">
+				{post.author.node.name} on {formatDate(post.date)}
+				{#if post.featuredImage?.node?.mediaSettings?.artistCredit}
+					| 🖌️ Artist Credit: {post.featuredImage.node.mediaSettings.artistCredit}
+				{/if}
+			</p>
+		</ParallaxHero>
+	{:else}
+		<div class="post-title container">
+			<slot name="title">
+				<h1>{post.title}</h1>
+			</slot>
+			<p class="post-meta">
+				{post.author.node.name} on {formatDate(post.date)}
+				{#if post.featuredImage?.node?.mediaSettings?.artistCredit}
+					| 🖌️ Artist Credit: {post.featuredImage.node.mediaSettings.artistCredit}
+				{/if}
+			</p>
 		</div>
 	{/if}
+	<div class="post-body container">
+		<div class="post-content">
+			<slot>
+				{#if post.content}
+					{@html post.content}
+				{/if}
+			</slot>
+		</div>
+		{#if categories.length}
+			<div class="category-list">
+				<h4>Categorized As</h4>
+				<p>{categories.join(', ')}</p>
+			</div>
+		{/if}
+	</div>
 </article>
 
-<style>
-	article {
-		margin-top: 2rem;
-	}
-	article img {
-		max-width: 100%;
-	}
+<style lang="scss">
 	.category-list {
 		border-top: 2px solid var(--color-border);
 		margin-top: 2.5rem;
 		padding-top: 2rem;
-	}
-	.category-list h4 {
-		margin: 0;
+		h4 {
+			margin: 0;
+		}
 	}
 
-	.post::after {
+	.post-content::after {
 		content: '';
 		display: block;
 		clear: both;
 	}
 
-	.post :global(.featured-card) {
+	.post-content :global(.featured-card) {
 		display: block;
 		max-width: 300px;
 		float: left;

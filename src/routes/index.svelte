@@ -20,11 +20,14 @@
 								width
 								height
 							}
+							mediaSettings {
+								artistCredit
+							}
 						}
 					}
 				}
 			}
-      featuredCard {
+			featuredCard {
 				label
 				card_name
 				image
@@ -41,7 +44,7 @@
 		return {
 			props: {
 				posts: posts.nodes,
-        featuredCard
+				featuredCard
 			}
 		};
 	}
@@ -51,20 +54,20 @@
 	import Sidebar from '@/components/layout/Sidebar.svelte';
 	import PostList from '@/components/PostList.svelte';
 	export let posts;
-  export let featuredCard;
+	export let featuredCard;
 </script>
 
-<div class="content-wrap">
-  <div class="content-main">
-    <h1>Latest Posts</h1>
-    <PostList {posts} />
+<div class="content-wrap container">
+	<div class="content-main">
+		<h1>Latest Posts</h1>
+		<PostList {posts} />
 	</div>
 	<aside class="content-aside">
 		<Sidebar card={featuredCard} />
 	</aside>
 </div>
 
-<style>
+<style lang="scss">
 	.content-wrap {
 		display: flex;
 		position: relative;

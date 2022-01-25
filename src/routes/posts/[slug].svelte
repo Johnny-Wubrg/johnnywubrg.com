@@ -29,6 +29,9 @@
               width
               height
             }
+						mediaSettings {
+							artistCredit
+						}
           }
         }
 				featuredCardSettings {

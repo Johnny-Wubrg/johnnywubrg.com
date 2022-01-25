@@ -11,7 +11,7 @@
 </script>
 
 <Template {category}>
-	<ul class="cards-list">
+	<ul class="cards-list container">
 		{#each posts as post}
 			<li class="cards-item">
 				<a href={post.uri}>
