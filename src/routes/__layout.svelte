@@ -84,7 +84,7 @@
 	<meta name="description" content={description} />
 </svelte:head>
 
-<Header {title} menu={getMenu('MENU_1')} />
+<Header {title} menu={getMenu('PRIMARY')} />
 
 <main>
 	<slot />
