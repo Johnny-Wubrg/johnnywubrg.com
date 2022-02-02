@@ -1,8 +1,11 @@
-@import 'themes';
-@import 'partials';
+@import 'globals';
 
 :root {
 	--container-width: 90%;
+
+	/* Breakpoints */
+	--breakpoint-sm: 480px;
+	--breakpoint-md: 640px;
 
 	/* Colors */
 	--color-white: #fdfffc;
@@ -70,6 +73,13 @@ h3 {
 
 a {
 	color: var(--color-link);
+}
+
+button {
+	cursor: pointer;
+	font-size: inherit;
+	font-weight: inherit;
+	font-family: inherit;
 }
 
 .container {

@@ -3,7 +3,9 @@ import { resolve } from 'path';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	preprocess: preprocess(),
+	preprocess: preprocess({
+		scss: { prependData: `@import 'src/styles/globals.scss';` }
+	}),
 	kit: {
 		// hydrate the <div id="svelte"> element in src/app.html
 		target: '#svelte',

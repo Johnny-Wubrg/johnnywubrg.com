@@ -31,16 +31,19 @@
 <style lang="scss">
 	.nav {
 		&-list {
-			display: flex;
 			list-style-type: none;
+			width: 100%;
 			margin: 0;
 			padding: 0;
-      background: var(--color-highlight);
+			background: var(--color-highlight);
+			@include breakpoint(small) {
+				display: flex;
+			}
 			&-child {
 				display: none;
 				position: absolute;
 				top: 100%;
-        right: 0;
+				right: 0;
 			}
 		}
 		&-item {
@@ -53,10 +56,10 @@
 					display: block;
 				}
 			}
-      &-child {
+			&-child {
 				font-size: 1em;
-        white-space: nowrap;
-      }
+				white-space: nowrap;
+			}
 		}
 		&-link {
 			padding: 1em;

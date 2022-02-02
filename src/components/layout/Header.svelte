@@ -7,7 +7,7 @@
 	let scrolled;
 </script>
 
-<svelte:window bind:scrollY={scrolled}/>
+<svelte:window bind:scrollY={scrolled} />
 
 <header class="header" class:scrolled>
 	<PageLoader />
@@ -31,21 +31,30 @@
 			max-width: var(--container-width);
 			margin: auto;
 			padding: 0 1rem;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
+			text-align: center;
+			@include breakpoint(small) {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				text-align: left;
+			}
+
+			.nav {
+				display: none;
+				@include breakpoint(small) {
+					display: block;
+					position: relative;
+				}
+			}
 		}
 		&-brand {
 			margin: 0;
 			transition: font-size 200ms;
+			padding: 0.5em 0;
 		}
 		&.scrolled {
 			.header-brand {
 				font-size: 1.2em;
-			}
-
-			:global(.nav-item-root) {
-				font-size: 0.85em;
 			}
 		}
 	}

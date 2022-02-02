@@ -57,6 +57,7 @@
 	import { setContext } from 'svelte';
 	import Header from '@/components/layout/Header.svelte';
 	import Footer from '@/components/layout/Footer.svelte';
+	import MobileNav from '@/components/layout/MobileNav.svelte';
 
 	export let menus;
 	export let title;
@@ -85,6 +86,7 @@
 </svelte:head>
 
 <Header {title} menu={getMenu('PRIMARY')} />
+<MobileNav menu={getMenu('PRIMARY')} />
 
 <main>
 	<slot />
