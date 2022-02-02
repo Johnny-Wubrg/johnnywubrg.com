@@ -32,7 +32,6 @@
 	.nav {
 		&-list {
 			list-style-type: none;
-			width: 100%;
 			margin: 0;
 			padding: 0;
 			background: var(--color-highlight);
