@@ -29,22 +29,24 @@
 	export let categories;
 </script>
 
-<h1>Categories</h1>
+<div class="container">
+	<h1>Categories</h1>
 
-{#if categories}
-	<ul>
-		{#each categories as category}
-			<li>
-				<h2>
-					<a href={category.uri}>{category.name}</a>
-				</h2>
-				{#if category.description}
-					<p>{category.description}</p>
-				{/if}
-			</li>
-		{/each}
-	</ul>
-{/if}
+	{#if categories}
+		<ul>
+			{#each categories as category}
+				<li>
+					<h2>
+						<a href={category.uri}>{category.name}</a>
+					</h2>
+					{#if category.description}
+						<p>{category.description}</p>
+					{/if}
+				</li>
+			{/each}
+		</ul>
+	{/if}
+</div>
 
 <style>
 	ul {
