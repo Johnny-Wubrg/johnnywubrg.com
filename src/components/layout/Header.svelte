@@ -56,6 +56,10 @@
 			.header-brand {
 				font-size: 1.2em;
 			}
+
+			:global(.nav-item-root) {
+				font-size: 0.85em;
+			}
 		}
 	}
 </style>

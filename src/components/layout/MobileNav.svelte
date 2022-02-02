@@ -40,7 +40,7 @@
 			<ul class="menu-list">
 				{#if parents.length}
 					<li class="menu-row">
-						<button class="menu-action" on:click={pop}>← Back</button>
+						<button class="menu-action" on:click={pop}>&#11207; Back</button>
 					</li>
 				{/if}
 				{#each active as item}
@@ -49,7 +49,7 @@
 							{item.label}
 						</a>
 						{#if item.childItems?.nodes?.length}
-							<button class="menu-traverse" on:click={() => traverse(item)}>→</button>
+							<button class="menu-traverse" on:click={() => traverse(item)}>&#11208;</button>
 						{/if}
 					</li>
 				{/each}
@@ -61,7 +61,7 @@
 				transition:fly={{ x: 20, duration: 200 }}
 				on:click={() => window.scrollTo({ top: 0 })}
 			>
-				↑
+        &#11205;
 			</button>
 		{/if}
 	{/if}
@@ -72,11 +72,15 @@
 
 <style lang="scss">
 	.mobile-nav {
-		position: fixed;
+    position: fixed;
 		bottom: 1.5em;
 		right: 1.5em;
 		z-index: 30;
-		display: flex;
+    display: flex;
+    
+    @include breakpoint(small) {
+      display: none;
+    }
 	}
 
 	.action {
