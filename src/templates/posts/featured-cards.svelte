@@ -13,6 +13,3 @@
 		{@html post.content}
 	{/if}
 </Template>
-
-<style>
-</style>

@@ -55,8 +55,16 @@
 		}
 		&-top {
 			margin-bottom: 1em;
-			display: flex;
-			justify-content: space-between;
+			@include breakpoint(small) {
+				display: flex;
+				justify-content: space-between;
+			}
+			.info {
+				margin-bottom: 1em;
+				@include breakpoint(small) {
+					margin-bottom: 0;
+				}
+			}
 		}
 
 		.disclaimer {

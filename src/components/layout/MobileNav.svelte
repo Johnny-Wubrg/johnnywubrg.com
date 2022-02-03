@@ -14,8 +14,9 @@
 
 	const closeMenu = (e: Event) => {
 		if (e && e.composedPath().includes(ref)) {
-			return true;
+      return true;
 		}
+    console.log('Close');
 
 		active = null;
 		parents = [];
@@ -61,26 +62,26 @@
 				transition:fly={{ x: 20, duration: 200 }}
 				on:click={() => window.scrollTo({ top: 0 })}
 			>
-        &#11205;
+				&#11205;
 			</button>
 		{/if}
 	{/if}
-	<button class="action toggle" class:active on:click={() => toggleMenu()}>
+	<button class="action toggle" class:active on:click={toggleMenu}>
 		<div class="toggle-bar" />
 	</button>
 </div>
 
 <style lang="scss">
 	.mobile-nav {
-    position: fixed;
+		position: fixed;
 		bottom: 1.5em;
 		right: 1.5em;
 		z-index: 30;
-    display: flex;
-    
-    @include breakpoint(small) {
-      display: none;
-    }
+		display: flex;
+
+		@include breakpoint(small) {
+			display: none;
+		}
 	}
 
 	.action {

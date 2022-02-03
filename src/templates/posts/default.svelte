@@ -84,8 +84,14 @@
 
 	.post-content :global(.featured-card) {
 		display: block;
-		max-width: 300px;
-		float: left;
-		margin-right: 1em;
+		width: 100%;
+		margin-bottom: 1em;
+		
+		@include breakpoint(small) {
+			max-width: 300px;
+			float: left;
+			margin-right: 1em;
+			margin-bottom: 0;
+		}
 	}
 </style>
