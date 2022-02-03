@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Icon from 'svelte-awesome';
+	import { arrowUp } from 'svelte-awesome/icons';
 	import { fly } from 'svelte/transition';
 
 	export let menu;
@@ -14,9 +16,8 @@
 
 	const closeMenu = (e: Event) => {
 		if (e && e.composedPath().includes(ref)) {
-      return true;
+			return true;
 		}
-    console.log('Close');
 
 		active = null;
 		parents = [];
@@ -62,7 +63,7 @@
 				transition:fly={{ x: 20, duration: 200 }}
 				on:click={() => window.scrollTo({ top: 0 })}
 			>
-				&#11205;
+				<Icon data={arrowUp} />
 			</button>
 		{/if}
 	{/if}
@@ -78,6 +79,7 @@
 		right: 1.5em;
 		z-index: 30;
 		display: flex;
+		color: var(--color-white);
 
 		@include breakpoint(small) {
 			display: none;
@@ -94,6 +96,13 @@
 		padding: 0;
 		color: var(--color-white);
 		margin-left: 0.25em;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		:global(.fa-icon) {
+			width: 0.75em;
+			height: 0.75em;
+		}
 	}
 
 	.toggle {
