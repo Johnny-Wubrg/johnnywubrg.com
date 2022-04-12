@@ -12,7 +12,7 @@ export const sendQuery = async (query: string, variables: Record<string, string>
 		})
 	});
 
-  if (!response.ok) {
+	if (!response.ok) {
     throw new Error('Cannot load resource.');
   }
   

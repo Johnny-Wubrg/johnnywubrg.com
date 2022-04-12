@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Template from './default.svelte';
+	import { restMtgUri } from '@/config/api';
 	export let post;
 	const featuredCardId = post.featuredCardSettings.featuredCard;
 
-	const imageUrl = (id: string) =>
-		`http://admin.johnny-wubrg.local/wp-json/wp-mtg/v1/cards/${id}/image.png`;
+	const imageUrl = (id: string) => `${restMtgUri}/cards/${id}/image.png`;
 </script>
 
 <Template {post}>

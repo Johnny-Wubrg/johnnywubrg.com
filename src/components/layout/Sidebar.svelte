@@ -1,8 +1,10 @@
 <script>
 	import FeaturedCard from '@/components/FeaturedCard.svelte';
-  export let card;
+	export let card;
 </script>
 
 <div class="sidebar">
-  <FeaturedCard {card} />
+	{#if card !== null}
+		<FeaturedCard {card} />
+	{/if}
 </div>

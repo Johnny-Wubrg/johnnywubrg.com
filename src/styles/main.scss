@@ -46,11 +46,12 @@
 	--mtg-green: var(--mtg-green-light);
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		@include use-theme(dark);
-	}
-}
+// TODO
+// @media (prefers-color-scheme: dark) {
+// 	:root {
+// 		@include use-theme(dark);
+// 	}
+// }
 
 html,
 body {

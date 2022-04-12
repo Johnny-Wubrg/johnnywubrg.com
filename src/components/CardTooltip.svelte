@@ -22,11 +22,12 @@ import { getCardImageUri } from '@/utils/api';
 
 	function handleMouseMove(e: MouseEvent) {
 		const target = e.target as HTMLElement;
-		const offset = window.scrollY + window.innerHeight;
+		const offsetY = window.scrollY + window.innerHeight;
+		const offsetX = window.scrollX + window.innerWidth;
 
 		tooltipPos = {
-			x: e.pageX + 15,
-			y: e.pageY + 15 + height < offset ? e.pageY + 15 : e.pageY - height - 15
+			x: e.pageX + 15 + width < offsetX ? e.pageX + 15 : e.pageX - width - 15,
+			y: e.pageY + 15 + height < offsetY ? e.pageY + 15 : e.pageY - height - 15
 		};
 
 		if (!target.matches(elementSelector)) {
