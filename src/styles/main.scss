@@ -72,6 +72,10 @@ h3 {
 	font-family: var(--font-title);
 }
 
+* {
+	box-sizing: border-box;
+}
+
 a {
 	color: var(--color-link);
 }

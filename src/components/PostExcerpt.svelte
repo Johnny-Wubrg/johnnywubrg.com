@@ -7,6 +7,7 @@
 	{#if post.featuredImage}
 		<a href={post.uri} class="post-thumbnail">
 			<img src={post.featuredImage.node.sourceUrl} alt={post.featuredImage.node.altText} />
+			<h2 class="post-category">{post.categories.nodes[0].name}</h2>
 		</a>
 	{/if}
 	<div class="post-content">
@@ -29,6 +30,7 @@
 	.post {
 		display: flex;
 		&-thumbnail {
+			position: relative;
 			display: block;
 			flex: 0 0 30%;
 			margin-right: 1em;
@@ -36,6 +38,18 @@
 				display: block;
 				width: 100%;
 			}
+		}
+		&-category {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			margin: 0;
+			background: rgba(#000, 0.5);
+			padding: 0.5em;
+			color: var(--color-white);
+			left: 0;
+			width: 100%;
+			text-align: center;
 		}
 		&-content {
 			flex: 1 1 auto;

@@ -25,6 +25,11 @@
 							}
 						}
 					}
+					categories {
+						nodes {
+							name
+						}
+					}
 				}
 			}
 			featuredCard {
