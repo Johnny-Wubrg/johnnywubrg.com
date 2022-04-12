@@ -1,11 +1,11 @@
 <script lang="ts">
 	import { formatDate } from '@/utils/datetime';
+	import { restMtgUri } from '@/config/api';
 
 	import Template from './default.svelte';
 	export let category;
 
-	const imageUrl = (id: string) =>
-		`http://admin.johnny-wubrg.local/wp-json/wp-mtg/v1/cards/${id}/image.png`;
+	const imageUrl = (id: string) => `${restMtgUri}/cards/${id}/image.png`;
 
 	const posts = category.posts.nodes;
 </script>
