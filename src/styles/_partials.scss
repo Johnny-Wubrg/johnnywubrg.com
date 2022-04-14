@@ -1,5 +1,8 @@
 %container {
 	padding: 1rem;
-	max-width: var(--container-width);
 	margin: 0 auto 12rem;
+	@include breakpoint(small) {
+		max-width: var(--container-width);
+		display: flex;
+	}
 }

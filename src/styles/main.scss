@@ -91,3 +91,13 @@ button {
 .container {
 	@extend %container;
 }
+
+.content-wrap {
+	display: flex;
+	position: relative;
+	align-items: flex-start;
+}
+
+.content-main {
+	flex: 1 1 auto;
+}

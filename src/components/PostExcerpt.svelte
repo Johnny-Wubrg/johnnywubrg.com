@@ -30,12 +30,16 @@
 
 <style lang="scss">
 	.post {
-		display: flex;
+		@include breakpoint(small) {
+			display: flex;
+		}
 		&-thumbnail {
 			position: relative;
 			display: block;
 			flex: 0 0 30%;
-			margin-right: 1em;
+			@include breakpoint(small) {
+				margin-right: 1em;
+			}
 			img {
 				display: block;
 				width: 100%;

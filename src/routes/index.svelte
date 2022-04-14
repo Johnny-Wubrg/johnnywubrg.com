@@ -56,10 +56,8 @@
 </script>
 
 <script>
-	import Sidebar from '@/components/layout/Sidebar.svelte';
 	import PostList from '@/components/PostList.svelte';
 	export let posts;
-	export let featuredCard;
 </script>
 
 <div class="content-wrap container">
@@ -67,23 +65,6 @@
 		<h1>Latest Posts</h1>
 		<PostList {posts} />
 	</div>
-	<aside class="content-aside">
-		<Sidebar card={featuredCard} />
-	</aside>
 </div>
 
-<style lang="scss">
-	.content-wrap {
-		display: flex;
-		position: relative;
-		align-items: flex-start;
-	}
-
-	.content-main {
-		flex: 1 1 auto;
-	}
-
-	.content-aside {
-		flex: 0 0 20%;
-	}
-</style>
+<style lang="scss"></style>
