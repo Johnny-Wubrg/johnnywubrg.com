@@ -1,0 +1,17 @@
+.wp-block-gallery {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 0 auto;
+}
+
+.wp-block-image {
+  margin: 0;
+  max-width: 100%;
+  img {
+    max-width: 100%;
+    display: block;
+    width: auto;
+    height: auto;
+  }
+}
