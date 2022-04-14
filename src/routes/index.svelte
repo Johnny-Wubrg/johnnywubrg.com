@@ -5,7 +5,7 @@
 	const gql = String.raw;
 	const query = gql`
 		query getPosts {
-			posts {
+			posts(first: 3) {
 				nodes {
 					databaseId
 					uri
@@ -56,6 +56,7 @@
 </script>
 
 <script>
+	import PostColumns from '@/components/PostColumns.svelte';
 	import PostList from '@/components/PostList.svelte';
 	export let posts;
 </script>
@@ -63,7 +64,12 @@
 <div class="content-wrap container">
 	<div class="content-main">
 		<h1>Latest Posts</h1>
-		<PostList {posts} />
+
+		{#if posts.length > 1}
+			<PostColumns {posts} />
+		{:else}
+			<PostList {posts} />
+		{/if}
 	</div>
 </div>
 

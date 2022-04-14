@@ -43,6 +43,8 @@
 			img {
 				display: block;
 				width: 100%;
+				object-fit: cover;
+				aspect-ratio: 6 / 4;
 			}
 		}
 		&-category {
