@@ -7,7 +7,9 @@
 	{#if post.featuredImage}
 		<a href={post.uri} class="post-thumbnail">
 			<img src={post.featuredImage.node.sourceUrl} alt={post.featuredImage.node.altText} />
-			<h2 class="post-category">{post.categories.nodes[0].name}</h2>
+			{#if post.categories && post.categories.nodes.length}
+				<h2 class="post-category">{post.categories.nodes[0].name}</h2>
+			{/if}
 		</a>
 	{/if}
 	<div class="post-content">

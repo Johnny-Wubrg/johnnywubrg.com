@@ -15,7 +15,7 @@
 	<p>No posts found.</p>
 {/if}
 
-<style>
+<style lang="scss">
 	ul {
 		list-style: none;
 		padding: 0;
