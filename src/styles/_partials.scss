@@ -3,6 +3,5 @@
 	margin: 0 auto 12rem;
 	@include breakpoint(small) {
 		max-width: var(--container-width);
-		display: flex;
 	}
 }

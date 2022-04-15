@@ -9,11 +9,13 @@
 <svelte:window bind:scrollY={scroll} />
 
 <div class="hero" style="--background: url({src}); --offset: {offset}px">
-	<div class="hero-content">
-		<div class="hero-text">
-			<slot />
+	<slot name="content">
+		<div class="hero-content">
+			<div class="hero-text">
+				<slot />
+			</div>
 		</div>
-	</div>
+	</slot>
 </div>
 
 <style lang="scss">

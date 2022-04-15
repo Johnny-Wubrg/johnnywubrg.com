@@ -4,7 +4,7 @@
 
 	const gql = String.raw;
 	const query = gql`
-		query getPosts {
+		query getHomepage {
 			posts(first: 3) {
 				nodes {
 					databaseId
@@ -40,36 +40,46 @@
 				post_title
 				archive_uri
 			}
+			generalSettings {
+				description
+			}
 		}
 	`;
 
 	export async function load() {
-		const { posts, featuredCard } = await sendQuery(query);
+		const { posts, featuredCard, generalSettings } = await sendQuery(query);
 
 		return {
 			props: {
 				posts: posts.nodes,
-				featuredCard
+				featuredCard,
+				generalSettings,
 			}
 		};
 	}
 </script>
 
 <script>
+	import HomepageHero from '@/components/HomepageHero.svelte';
 	import PostColumns from '@/components/PostColumns.svelte';
 	import PostList from '@/components/PostList.svelte';
+	export let generalSettings;
 	export let posts;
+	export let featuredCard;
 </script>
 
+<HomepageHero card={featuredCard} description={generalSettings.description} />
 <div class="content-wrap container">
 	<div class="content-main">
-		<h1>Latest Posts</h1>
+		<section>
+			<h1>Latest Posts</h1>
 
-		{#if posts.length > 1}
-			<PostColumns {posts} />
-		{:else}
-			<PostList {posts} />
-		{/if}
+			{#if posts.length > 1}
+				<PostColumns {posts} />
+			{:else}
+				<PostList {posts} />
+			{/if}
+		</section>
 	</div>
 </div>
 

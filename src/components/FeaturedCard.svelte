@@ -15,6 +15,11 @@
 <style lang="scss">
 	.featured-card {
 		max-width: 100%;
+		text-align: center;
+
+		&-label {
+			margin-top: 0;
+		}
 
 		&-image {
 			display: block;
@@ -25,6 +30,5 @@
 	.archive {
 		margin: 0;
 		margin-top: 0.5em;
-		text-align: center;
 	}
 </style>
