@@ -7,7 +7,7 @@
 	import ParallaxHero from './ParallaxHero.svelte';
 	import FeaturedCard from './FeaturedCard.svelte';
 
-	let scroll: number;
+	let scroll: number = 0;
 	$: bgOpacity = 0.5 + scroll / 1000;
 </script>
 
@@ -43,8 +43,11 @@
 		}
 	}
 	.content {
-		background: rgba(#000, var(--bg-opacity));
 		height: 100%;
+    background: rgba(#000, 0.5);
+		@include breakpoint(small) {
+			background: rgba(#000, var(--bg-opacity));
+		}
 	}
 	.container {
 		text-align: center;

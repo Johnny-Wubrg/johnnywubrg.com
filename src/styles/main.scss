@@ -1,5 +1,4 @@
 @import 'globals';
-@import 'wordpress/_index';
 
 :root {
 	--container-width: 90%;
@@ -101,3 +100,7 @@ button {
 .content-main {
 	flex: 1 1 auto;
 }
+
+@import 'components/buttons';
+
+@import 'wordpress/_index';

@@ -19,8 +19,11 @@
 	ul {
 		list-style: none;
 		padding: 0;
-		display: flex;
 		gap: 1em;
+		margin-bottom: 2em;
+		@include breakpoint(small) {
+			display: flex;
+		}
 		li {
 			flex: 0 1 50%;
 			:global(.post) {

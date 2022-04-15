@@ -79,6 +79,10 @@
 			{:else}
 				<PostList {posts} />
 			{/if}
+
+			<div class="actions">
+				<a class="button" href="/posts">All Posts</a>
+			</div>
 		</section>
 	</div>
 </div>
