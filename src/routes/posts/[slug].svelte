@@ -5,35 +5,35 @@
 
 	const gql = String.raw;
 	const query = gql`
-    query getPostBySlug($slug: ID!) {
-      post(id: $slug, idType: SLUG) {
-        date
-        title
-        content
-        author {
-          node {
-            name
-          }
-        }
-        categories {
-          nodes {
-            name
-            slug
-          }
-        }
-        featuredImage {
-          node {
-            sourceUrl
-            altText
-            mediaDetails {
-              width
-              height
-            }
+		query getPostBySlug($slug: ID!) {
+			post(id: $slug, idType: SLUG) {
+				date
+				title
+				content
+				author {
+					node {
+						name
+					}
+				}
+				categories {
+					nodes {
+						name
+						slug
+					}
+				}
+				featuredImage {
+					node {
+						sourceUrl
+						altText
+						mediaDetails {
+							width
+							height
+						}
 						mediaSettings {
 							artistCredit
 						}
-          }
-        }
+					}
+				}
 				featuredCardSettings {
 					featuredCard
 				}
@@ -41,9 +41,9 @@
 					title
 					description
 				}
-      }
-    }
-  `;
+			}
+		}
+	`;
 
 	const resolveTemplate = async (slugs: string[]) => {
 		for (const slug of slugs) {
@@ -74,6 +74,7 @@
 
 		return {
 			props: {
+				slug: page.params.slug,
 				post,
 				template: await resolveTemplate(categories)
 			}
@@ -82,8 +83,17 @@
 </script>
 
 <script>
+	import Comments from 'disqus-svelte'; // You can use any alias.
+	export let slug;
 	export let post;
 	export let template;
+	const isClient = typeof window !== 'undefined';
 </script>
 
 <svelte:component this={template} {post} />
+
+{#if isClient}
+	<div class="container">
+		<Comments identifier={slug} />
+	</div>
+{/if}
