@@ -94,6 +94,6 @@
 
 {#if isClient}
 	<div class="container">
-		<Comments identifier={slug} />
+		<Comments identifier={slug} siteName="johnny-wubrg" />
 	</div>
 {/if}
