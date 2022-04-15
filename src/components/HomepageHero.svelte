@@ -3,7 +3,7 @@
 	export let card;
 
 	const img =
-		'https://c1.scryfall.com/file/scryfall-cards/art_crop/front/2/2/225a0644-184e-4216-ac53-09a8a33538a2.jpg?1645341008';
+		'https://mtg-blog-contentbucket-4ktnmn59klbs.s3.amazonaws.com/2022/04/150420221649998614.jpeg';
 	import ParallaxHero from './ParallaxHero.svelte';
 	import FeaturedCard from './FeaturedCard.svelte';
 
@@ -19,6 +19,7 @@
 			<div class="container">
 				<div class="intro">
 					<h2>{description}</h2>
+					<p>Background Art: Isochron Scepter by Mark Harrison</p>
 				</div>
 				{#if card}
 					<hr />
@@ -44,7 +45,7 @@
 	}
 	.content {
 		height: 100%;
-    background: rgba(#000, 0.5);
+		background: rgba(#000, 0.5);
 		@include breakpoint(small) {
 			background: rgba(#000, var(--bg-opacity));
 		}
@@ -72,7 +73,12 @@
 		color: var(--color-white);
 		text-shadow: 0 0 2em #000;
 		h2 {
+			margin: 0;
 			font-size: 2em;
+		}
+		p {
+			font-size: 0.8rem;
+			font-style: italic;
 		}
 	}
 </style>
