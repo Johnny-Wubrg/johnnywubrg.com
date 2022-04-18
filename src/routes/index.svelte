@@ -53,7 +53,7 @@
 			props: {
 				posts: posts.nodes,
 				featuredCard,
-				generalSettings,
+				generalSettings
 			}
 		};
 	}
@@ -71,19 +71,26 @@
 <HomepageHero card={featuredCard} description={generalSettings.description} />
 <div class="content-wrap container">
 	<div class="content-main">
-		<section>
-			<h1>Latest Posts</h1>
+		{#if posts.length}
+			<section>
+				<h1>Latest Posts</h1>
 
-			{#if posts.length > 1}
-				<PostColumns {posts} />
-			{:else}
-				<PostList {posts} />
-			{/if}
+				{#if posts.length > 1}
+					<PostColumns {posts} />
+				{:else}
+					<PostList {posts} />
+				{/if}
 
-			<div class="actions">
-				<a class="button" href="/posts">All Posts</a>
-			</div>
-		</section>
+				<div class="actions">
+					<a class="button" href="/posts">All Posts</a>
+				</div>
+			</section>
+		{:else}
+			<section style="text-align: center;">
+				<h1>Whoops, you're here early!</h1>
+				<p>Check back later for some exciting Magic: the Gathering articles!</p>
+			</section>
+		{/if}
 	</div>
 </div>
 
