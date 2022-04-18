@@ -58,15 +58,15 @@
 		return DefaultPostTemplate;
 	};
 
-	export async function load({ page }) {
+	export async function load({ params }) {
 		const { post } = await sendQuery(query, {
-			slug: page.params.slug
+			slug: params.slug
 		});
 
 		if (!post) {
 			return {
 				status: 404,
-				error: new Error(`Not found: ${page.params.slug}`)
+				error: new Error(`Not found: ${params.slug}`)
 			};
 		}
 
@@ -74,7 +74,7 @@
 
 		return {
 			props: {
-				slug: page.params.slug,
+				slug: params.slug,
 				post,
 				template: await resolveTemplate(categories)
 			}
@@ -94,6 +94,6 @@
 
 {#if isClient}
 	<div class="container">
-		<Comments identifier={slug} />
+		<Comments identifier={slug} siteName="johnny-wubrg" />
 	</div>
 {/if}

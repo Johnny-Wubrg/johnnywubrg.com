@@ -12,8 +12,8 @@
 	"devDependencies": {
 		"@sveltejs/adapter-netlify": "^1.0.0-next.51",
 		"@sveltejs/adapter-static": "^1.0.0-next.26",
-		"@sveltejs/kit": "next",
-		"disqus-svelte": "^1.0.9",
+		"@sveltejs/kit": "^1.0.0-next.314",
+		"disqus-svelte": "github:pvharmo/disqus-svelte#add-site-name-option",
 		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-svelte3": "^3.2.1",

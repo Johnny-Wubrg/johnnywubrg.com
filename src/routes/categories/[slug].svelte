@@ -49,15 +49,15 @@
 		}
 	};
 
-	export async function load({ page }) {
+	export async function load({ params }) {
 		const { category } = await sendQuery(query, {
-			slug: page.params.slug
+			slug: params.slug
 		});
 
 		if (!category) {
 			return {
 				status: 404,
-				error: new Error(`Could not load ${page.params.slug}`)
+				error: new Error(`Could not load ${params.slug}`)
 			};
 		}
 
