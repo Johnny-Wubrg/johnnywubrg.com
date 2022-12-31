@@ -11,13 +11,15 @@
 			<div class="info">
 				<p>
 					{title}: {description}
-					{#each menu as item}
-						| <a href={item.path}>{item.label}</a>
-					{/each}
+					{#if menu?.length}
+						{#each menu as item}
+							| <a href={item.path}>{item.label}</a>
+						{/each}
+					{/if}
 				</p>
 			</div>
 
-			{#if social.length}
+			{#if social?.length}
 				<div class="social">
 					<p>
 						{#each social as item, i}
@@ -32,8 +34,8 @@
 			<p class="disclaimer">
 				<b>Magic: the Gathering</b> is copyright Wizards of the Coast, LLC, a subsidiary of Hasbro, Inc.
 				Portions of this website are unofficial fan content permitted under the Wizards of the Coast
-				Fan Content Policy. This site is not produced by, endorsed by, supported by, or affiliated
-				with Wizards of the Coast.
+				Fan Content Policy. This site is not produced by, endorsed by, supported by, or affiliated with
+				Wizards of the Coast.
 			</p>
 
 			<p class="disclaimer">

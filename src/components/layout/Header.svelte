@@ -15,9 +15,11 @@
 		<h1 class="header-brand">
 			<a href="/">{title}</a>
 		</h1>
-		<nav class="nav">
-			<NavList {menu} />
-		</nav>
+		{#if menu}
+			<nav class="nav">
+				<NavList {menu} />
+			</nav>
+		{/if}
 	</div>
 </header>
 

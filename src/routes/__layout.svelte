@@ -64,7 +64,7 @@
 	export let description;
 
 	const getMenu = (locationId) =>
-		menus.find((e) => e.locations.includes(locationId)).menuItems.nodes;
+		menus.find((e) => e.locations.includes(locationId))?.menuItems?.nodes;
 
 	setContext('siteTitle', title);
 	setContext('siteDescription', description);

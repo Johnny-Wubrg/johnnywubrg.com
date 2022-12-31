@@ -13,9 +13,10 @@ export const sendQuery = async (query: string, variables: Record<string, string>
 	});
 
 	if (!response.ok) {
-    throw new Error('Cannot load resource.');
-  }
-  
+		console.log(response);
+		throw new Error('Cannot load resource.');
+	}
+
 	const responseObj = await response.json();
 	return responseObj.data;
 };
