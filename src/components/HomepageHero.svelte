@@ -2,8 +2,6 @@
 	export let description;
 	export let card;
 
-	const img =
-		'https://mtg-blog-contentbucket-4ktnmn59klbs.s3.amazonaws.com/2022/04/150420221649998614.jpeg';
 	import ParallaxHero from './ParallaxHero.svelte';
 	import FeaturedCard from './FeaturedCard.svelte';
 
@@ -14,7 +12,7 @@
 <svelte:window bind:scrollY={scroll} />
 
 <div class="homepage-hero">
-	<ParallaxHero src={img}>
+	<ParallaxHero src="/hero-background.jpeg">
 		<div slot="content" class="content" style="--bg-opacity: {bgOpacity}">
 			<div class="container">
 				<div class="intro">

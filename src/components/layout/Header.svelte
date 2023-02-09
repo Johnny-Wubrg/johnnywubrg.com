@@ -4,16 +4,19 @@
 	export let menu;
 	export let title;
 
-	let scrolled;
+	let scrollY;
+	$: scrolled = scrollY > 48;
 </script>
 
-<svelte:window bind:scrollY={scrolled} />
+<svelte:window bind:scrollY />
 
 <header class="header" class:scrolled>
 	<PageLoader />
 	<div class="header-wrap">
 		<h1 class="header-brand">
-			<a href="/">{title}</a>
+			<a href="/">
+				<img src="/jw-logo.svg" alt={title} />
+			</a>
 		</h1>
 		{#if menu}
 			<nav class="nav">
@@ -27,7 +30,7 @@
 	.header {
 		position: sticky;
 		top: 0;
-		background: var(--color-highlight);
+		background: var(--color-background);
 		z-index: 90;
 		&-wrap {
 			max-width: var(--container-width);
@@ -53,6 +56,14 @@
 			margin: 0;
 			transition: font-size 200ms;
 			padding: 0.5em 0;
+			a {
+				display: block;
+			}
+			img {
+				width: 4em;
+				display: block;
+				margin: auto;
+			}
 		}
 		&.scrolled {
 			.header-brand {

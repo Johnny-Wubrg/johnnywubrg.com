@@ -8,6 +8,7 @@
 	--breakpoint-md: 640px;
 
 	/* Colors */
+
 	--color-white: #fdfffc;
 	--color-white-2: #f0f4f8;
 	--color-gray: #d9e2ec;
@@ -18,17 +19,17 @@
 	--color-light-greed: #399e5a;
 	--color-purple: #22031f;
 
-	--mtg-white-dark: #fffffa;
-	--mtg-blue-dark: #3c91e6;
-	--mtg-black-dark: #2c1320;
-	--mtg-red-dark: #bf211e;
-	--mtg-green-dark: #426a5a;
+	--mtg-white-light: #f3f3c1;
+	--mtg-blue-light: #74b8e5;
+	--mtg-black-light: #79797b;
+	--mtg-red-light: #ee4155;
+	--mtg-green-light: #2ab45a;
 
-	--mtg-white-light: #f8f6d8;
-	--mtg-blue-light: #c1d7e9;
-	--mtg-black-light: #bab1ab;
-	--mtg-red-light: #e49977;
-	--mtg-green-light: #a3c095;
+	--mtg-white-dark: #f3f3c1;
+	--mtg-blue-dark: #477a94;
+	--mtg-black-dark: #79797b;
+	--mtg-red-dark: #ee4155;
+	--mtg-green-dark: #2ab45a;
 
 	/* Fonts */
 
@@ -76,8 +77,8 @@ h3 {
 	box-sizing: border-box;
 }
 
-a {
-	color: inherit;
+a, a:link {
+	color: var(--color-link);
 }
 
 button {
