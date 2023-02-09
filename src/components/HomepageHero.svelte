@@ -72,7 +72,8 @@
 		text-shadow: 0 0 2em #000;
 		h2 {
 			margin: 0;
-			font-size: 2em;
+			font-size: 3em;
+			font-weight: lighter;
 		}
 		p {
 			font-size: 0.8rem;

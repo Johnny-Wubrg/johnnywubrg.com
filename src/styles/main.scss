@@ -1,4 +1,5 @@
 @import 'globals';
+@import 'fonts';
 
 :root {
 	--container-width: 90%;
@@ -33,7 +34,7 @@
 
 	/* Fonts */
 
-	--font-title: sofia-pro, sans-serif;
+	--font-title: Bambino, sans-serif;
 	--font-primary: proxima-nova, sans-serif;
 
 	/* Themes */
@@ -71,6 +72,7 @@ h1,
 h2,
 h3 {
 	font-family: var(--font-title);
+	font-weight: normal;
 }
 
 * {

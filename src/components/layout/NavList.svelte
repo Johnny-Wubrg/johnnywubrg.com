@@ -34,7 +34,6 @@
 			list-style-type: none;
 			margin: 0;
 			padding: 0;
-			background: var(--color-highlight);
 			@include breakpoint(small) {
 				display: flex;
 			}
@@ -64,6 +63,8 @@
 			padding: 1em;
 			display: block;
 			text-decoration: none;
+			font-family: var(--font-title);
+			font-weight: normal;
 		}
 	}
 </style>
