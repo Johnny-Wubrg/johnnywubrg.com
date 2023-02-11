@@ -41,6 +41,7 @@
 				archive_uri
 			}
 			generalSettings {
+				title,
 				description
 			}
 		}
@@ -67,6 +68,11 @@
 	export let posts;
 	export let featuredCard;
 </script>
+
+
+<svelte:head>
+	<title>{generalSettings.title} | A Magic: the Gathering Blog for Combo Players</title>
+</svelte:head>
 
 <HomepageHero card={featuredCard} description={generalSettings.description} />
 <div class="content-wrap container">
