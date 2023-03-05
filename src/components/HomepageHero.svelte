@@ -72,8 +72,11 @@
 		text-shadow: 0 0 2em #000;
 		h2 {
 			margin: 0;
-			font-size: 3em;
+			font-size: 2em;
 			font-weight: lighter;
+			@include breakpoint(medium) {
+				font-size: 3em;
+			}
 		}
 		p {
 			font-size: 0.8rem;

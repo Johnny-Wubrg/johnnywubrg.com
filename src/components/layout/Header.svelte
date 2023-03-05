@@ -1,6 +1,7 @@
 <script>
 	import PageLoader from './PageLoader.svelte';
 	import NavList from './NavList.svelte';
+	import Logo from '../svg/Logo.svelte';
 	export let menu;
 	export let title;
 
@@ -15,7 +16,9 @@
 	<div class="header-wrap">
 		<h1 class="header-brand">
 			<a href="/">
-				<img src="/jw-logo.svg" alt={title} />
+				<div class="header-logo">
+					<Logo />
+				</div>
 			</a>
 		</h1>
 		{#if menu}
@@ -56,22 +59,29 @@
 			margin: 0;
 			transition: font-size 200ms;
 			padding: 0.5em 0;
+			font-size: 1.2em;
 			a {
 				display: block;
 			}
-			img {
-				width: 4em;
-				display: block;
-				margin: auto;
+			@include breakpoint(small) {
+				font-size: 2em;
 			}
 		}
-		&.scrolled {
-			.header-brand {
-				font-size: 1.2em;
-			}
+		&-logo {
+			width: 4em;
+			display: block;
+			margin: auto;
+		}
 
-			:global(.nav-item-root) {
-				font-size: 0.85em;
+		@include breakpoint(small) {
+			&.scrolled {
+				.header-brand {
+					font-size: 1.2em;
+				}
+
+				:global(.nav-item-root) {
+					font-size: 0.85em;
+				}
 			}
 		}
 	}

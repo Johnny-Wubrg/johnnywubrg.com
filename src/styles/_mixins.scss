@@ -1,6 +1,6 @@
 $breakpoints: (
-	small: 480px,
-	medium: 640px
+	small: 600px,
+	medium: 900px
 );
 
 @mixin breakpoint($bp) {
