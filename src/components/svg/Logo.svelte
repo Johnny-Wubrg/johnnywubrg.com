@@ -69,15 +69,16 @@
 </svg>
 
 <style>
-  svg {
-    width: 100%;
-    display: block;
-  }
+	svg {
+		width: 100%;
+		display: block;
+	}
 	.st0 {
-		fill: #477a94;
+		fill: var(--mtg-blue-dark);
 	}
 	.st1 {
-		font-family: 'Bambino-Bold';
+		font-family: 'Bambino', sans-serif;
+		font-weight: bold;
 	}
 	.st2 {
 		font-size: 154.0629px;
@@ -86,6 +87,6 @@
 		letter-spacing: 15;
 	}
 	.st4 {
-		fill: #74b8e5;
+		fill: var(--mtg-blue-light);
 	}
 </style>

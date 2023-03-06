@@ -3,7 +3,6 @@
 	import NavList from './NavList.svelte';
 	import Logo from '../svg/Logo.svelte';
 	export let menu;
-	export let title;
 
 	let scrollY;
 	$: scrolled = scrollY > 48;
