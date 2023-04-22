@@ -1,32 +1,6 @@
-<script context="module" lang="ts">
-	import { sendQuery } from '@/utils/api';
-
-	const gql = String.raw;
-	const query = gql`
-		query getCategories {
-			categories(where: { hideEmpty: true, orderby: TERM_ORDER }) {
-				nodes {
-					name
-					uri
-					description
-				}
-			}
-		}
-	`;
-
-	export async function load() {
-		const { categories } = await sendQuery(query);
-
-		return {
-			props: {
-				categories: categories.nodes
-			}
-		};
-	}
-</script>
-
 <script lang="ts">
-	export let categories;
+	export let data;
+	const categories = data.categories;
 </script>
 
 <div class="container">

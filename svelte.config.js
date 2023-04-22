@@ -10,12 +10,8 @@ const config = {
 	kit: {
 		adapter: netlify(),
 		// hydrate the <div id="svelte"> element in src/app.html
-		vite: {
-			resolve: {
-				alias: {
-					'@': resolve('./src')
-				}
-			}
+		alias: {
+			'@': resolve('./src')
 		}
 	}
 };

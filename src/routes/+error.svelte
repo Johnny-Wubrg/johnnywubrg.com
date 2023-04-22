@@ -1,24 +1,14 @@
-<script context="module">
-	export function load({ status, error }) {
-		console.log(error);
-		return {
-			props: {
-				status
-			}
-		};
-	}
-</script>
-
 <script>
+	
+  import { page } from '$app/stores';
 	import NotFound from '@/components/errors/NotFound.svelte';
 	import Unknown from '@/components/errors/Unknown.svelte';
 
-	export let status;
 	const templateMap = {
 		'404': NotFound
 	};
 
-	$: template = templateMap[status] ?? Unknown;
+	$: template = templateMap[$page.status] ?? Unknown;
 </script>
 
 <div class="error">
