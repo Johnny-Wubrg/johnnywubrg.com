@@ -1,7 +1,7 @@
 <script>
 	import PostList from '@/components/PostList.svelte';
-	export let data
-	const posts = data.postsl;
+	export let data;
+	const { posts } = data;
 </script>
 
 <div class="content-wrap container">
