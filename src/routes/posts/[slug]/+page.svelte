@@ -1,7 +1,7 @@
 <script>
 	import Comments from 'disqus-svelte'; // You can use any alias.
 	export let data;
-	const {slug,post,template} = data;
+	const { slug, post, template } = data;
 
 	const isClient = typeof window !== 'undefined';
 </script>
