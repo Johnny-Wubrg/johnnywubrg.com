@@ -1,6 +1,7 @@
+import type { PostQueryResponse, PostsQueryResponse } from '$lib/models';
 import { gql } from './gql';
 
-export const getPostsQuery = gql`
+export const getPostsQuery = gql<PostsQueryResponse>`
 		query getPosts {
 			posts {
 				nodes {
@@ -32,7 +33,7 @@ export const getPostsQuery = gql`
 		}
 	`;
 
-export const getPostQuery = gql`
+export const getPostQuery = gql<PostQueryResponse>`
 		query getPostBySlug($slug: ID!) {
 			post(id: $slug, idType: SLUG) {
 				postId

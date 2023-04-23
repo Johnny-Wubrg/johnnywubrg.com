@@ -1,6 +1,7 @@
+import type { HomepageQueryResponse } from '$lib/models';
 import { gql } from './gql';
 
-export const getHomepageQuery = gql`
+export const getHomepageQuery = gql<HomepageQueryResponse>`
 		query getHomepage {
 			posts(first: 3) {
 				nodes {

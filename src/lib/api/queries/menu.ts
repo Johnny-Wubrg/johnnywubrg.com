@@ -1,6 +1,7 @@
+import type { MenusQueryResponse } from '$lib/models';
 import { gql } from './gql';
 
-export const getMenusQuery = gql`
+export const getMenusQuery = gql<MenusQueryResponse>`
 		query getMenus {
 			menus {
 				nodes {

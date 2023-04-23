@@ -4,11 +4,12 @@
 	import Header from '@/components/layout/Header.svelte';
 	import Footer from '@/components/layout/Footer.svelte';
 	import MobileNav from '@/components/layout/MobileNav.svelte';
+	import { dev } from '$app/environment';
 
 	export let data;
 
-	const {menus, title, description} = data;
-	
+	const { menus, title, description } = data;
+
 	const getMenu = (locationId) =>
 		menus.find((e) => e.locations.includes(locationId))?.menuItems?.nodes;
 
@@ -29,6 +30,9 @@
 	</title>
 
 	<meta name="description" content={description} />
+	{#if !dev}
+		<script defer data-domain="johnnywubrg.com" src="https://plausible.io/js/script.js"></script>
+	{/if}
 </svelte:head>
 
 <Header {title} menu={getMenu('PRIMARY')} />
