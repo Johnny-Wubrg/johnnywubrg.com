@@ -1,6 +1,6 @@
 <script>
 	import ParallaxHero from '@/components/ParallaxHero.svelte';
-	import { formatDate } from '@/utils/datetime';
+	import { formatDate } from '$lib/utils/datetime';
 	import { getContext } from 'svelte';
 	export let post;
 

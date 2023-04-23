@@ -1,4 +1,4 @@
-import { graphqlUri, restMtgUri } from '@/config/api';
+import { graphqlUri, restMtgUri } from '$lib/config/api';
 
 export const sendQuery = async (query: string, variables: Record<string, string> = {}) => {
 	const response = await fetch(graphqlUri, {

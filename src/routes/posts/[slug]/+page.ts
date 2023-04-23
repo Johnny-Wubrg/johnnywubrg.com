@@ -1,13 +1,14 @@
 import { error } from '@sveltejs/kit';
 
 export const prerender = true;
-import { sendQuery } from '@/utils/api';
+import { sendQuery } from '$lib/api/utils';
 import DefaultPostTemplate from '@/templates/posts/default.svelte';
 
 const gql = String.raw;
 const query = gql`
 		query getPostBySlug($slug: ID!) {
 			post(id: $slug, idType: SLUG) {
+				postId
 				date
 				title
 				content

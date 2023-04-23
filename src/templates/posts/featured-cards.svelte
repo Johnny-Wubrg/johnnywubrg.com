@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Template from './default.svelte';
-	import { restMtgUri } from '@/config/api';
+	import { restMtgUri } from '$lib/config/api';
 	export let post;
 	const featuredCardId = post.featuredCardSettings.featuredCard;
 

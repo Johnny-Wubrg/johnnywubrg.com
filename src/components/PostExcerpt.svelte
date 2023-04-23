@@ -1,5 +1,5 @@
 <script>
-	import { formatDate } from '@/utils/datetime';
+	import { formatDate } from '$lib/utils/datetime';
 	export let post;
 </script>
 

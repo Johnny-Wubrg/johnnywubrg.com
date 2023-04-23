@@ -1,5 +1,5 @@
 
-import { sendQuery } from '@/utils/api';
+import { sendQuery } from '$lib/api/utils';
 
 const gql = String.raw;
 const query = gql`

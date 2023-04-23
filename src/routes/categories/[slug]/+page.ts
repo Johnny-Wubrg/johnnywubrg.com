@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 
-import { sendQuery } from '@/utils/api';
+import { sendQuery } from '$lib/api/utils';
 import DefaultCategoryTemplate from '@/templates/categories/default.svelte';
 
 const gql = String.raw;

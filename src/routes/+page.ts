@@ -1,5 +1,5 @@
 
-import { sendQuery } from '@/utils/api';
+import { sendQuery } from '$lib/api/utils';
 export const prerender = true;
 
 const gql = String.raw;
