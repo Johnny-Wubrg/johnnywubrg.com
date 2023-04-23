@@ -18,6 +18,8 @@ export interface Post {
 	postId: number;
 	date: string;
 	title: string;
+	uri: string;
+	excerpt: string;
 	content: string;
 	author: GraphNode<Author>;
 	categories: GraphNodes<Category>;

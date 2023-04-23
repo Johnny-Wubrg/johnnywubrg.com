@@ -1,9 +1,10 @@
 <script lang="ts">
-	export let description;
-	export let card;
-
 	import ParallaxHero from './ParallaxHero.svelte';
 	import FeaturedCard from './FeaturedCard.svelte';
+	import type { FeaturedCardDetails } from '$lib/models';
+	
+	export let description: string;
+	export let card: FeaturedCardDetails;
 
 	let scroll: number = 0;
 	$: bgOpacity = 0.5 + scroll / 1000;

@@ -2,7 +2,7 @@ import type { GraphQueryResponse } from './graph';
 import type { PostsQueryResponse } from './posts';
 import type { GeneralSettings } from './settings';
 
-export interface FeaturedCard {
+export interface FeaturedCardDetails {
 	label: string;
 	card_name: string;
 	image: string;
@@ -13,5 +13,5 @@ export interface FeaturedCard {
 
 export type HomepageQueryResponse =
   PostsQueryResponse &
-	GraphQueryResponse<'featuredCard', FeaturedCard> &
+	GraphQueryResponse<'featuredCard', FeaturedCardDetails> &
 	GraphQueryResponse<'generalSettings', GeneralSettings>;

@@ -1,9 +1,10 @@
 <script lang="ts">
+	import type { MenuItem } from '$lib/models';
 	import Icon from 'svelte-awesome';
 	import { arrowUp } from 'svelte-awesome/icons';
 	import { fly } from 'svelte/transition';
 
-	export let menu;
+	export let menu: MenuItem[];
 	let parents = [];
 	let active = null;
 	let ref;
@@ -23,7 +24,7 @@
 		parents = [];
 	};
 
-	const traverse = (menuItem) => {
+	const traverse = (menuItem: MenuItem) => {
 		parents = [...parents, active];
 		active = menuItem.childItems.nodes;
 	};

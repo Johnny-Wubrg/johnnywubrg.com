@@ -10,7 +10,7 @@
 
 	const { menus, title, description } = data;
 
-	const getMenu = (locationId) =>
+	const getMenu = (locationId: string) =>
 		menus.find((e) => e.locations.includes(locationId))?.menuItems?.nodes;
 
 	$siteTitle = title;
@@ -35,7 +35,7 @@
 	{/if}
 </svelte:head>
 
-<Header {title} menu={getMenu('PRIMARY')} />
+<Header menu={getMenu('PRIMARY')} />
 <MobileNav menu={getMenu('PRIMARY')} />
 
 <main>

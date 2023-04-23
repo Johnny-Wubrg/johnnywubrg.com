@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
+	import type { Post } from '$lib/models';
 	import { formatDate } from '$lib/utils/datetime';
-	export let post;
+	export let post: Post;
 </script>
 
 <article class="post">

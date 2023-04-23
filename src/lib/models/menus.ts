@@ -4,7 +4,7 @@ import type { GeneralSettings } from './settings';
 export interface MenuItem {
 	path: string;
 	label: string;
-	childItems?: MenuItem[];
+	childItems?: GraphNodes<MenuItem>;
 }
 
 export interface Menu {

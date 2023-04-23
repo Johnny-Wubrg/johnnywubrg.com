@@ -1,6 +1,8 @@
-<script>
+<script lang="ts">
+	import type { Post } from '$lib/models';
+
 	import PostExcerpt from './PostExcerpt.svelte';
-	export let posts;
+	export let posts: Post[];
 </script>
 
 {#if posts}
