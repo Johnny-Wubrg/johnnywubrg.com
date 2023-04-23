@@ -1,4 +1,8 @@
 import type { GraphQuery } from '$lib/models';
 
-export const gql = <T>(...args: Parameters<typeof String.raw>) =>
-	String.raw(...args) as GraphQuery<T>;
+type Gql = {
+	<TResponse>(...args: Parameters<typeof String.raw>): GraphQuery<{}, TResponse>;
+	<TRequest, TResponse>(...args: Parameters<typeof String.raw>): GraphQuery<TRequest, TResponse>;
+};
+
+export const gql: Gql = String.raw;

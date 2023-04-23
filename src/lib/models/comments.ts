@@ -8,5 +8,10 @@ export interface Comment {
 	author: GraphNode<Author>;
 }
 
-export interface CommentMutationResponse extends GraphMutationResponse<'comment', Comment> {
+export type CommentMutationResponse = GraphMutationResponse<'comment', Comment>;
+
+export interface AddCommentMutationRequest {
+	id: number;
+	content: string;
+	author: string;
 }

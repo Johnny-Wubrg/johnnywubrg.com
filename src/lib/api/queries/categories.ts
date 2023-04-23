@@ -1,4 +1,4 @@
-import type { CategoriesQueryResponse, Category } from '$lib/models';
+import type { CategoriesQueryResponse, QueryBySlugRequest, CategoryQueryResponse } from '$lib/models';
 import { gql } from './gql';
 
 export const getCategoriesQuery = gql<CategoriesQueryResponse>`
@@ -13,7 +13,7 @@ export const getCategoriesQuery = gql<CategoriesQueryResponse>`
 	}
 `;
 
-export const getCategoryQuery = gql<Category>`
+export const getCategoryQuery = gql<QueryBySlugRequest, CategoryQueryResponse>`
 	query getCategoryBySlug($slug: ID!) {
 		category(idType: SLUG, id: $slug) {
 			name

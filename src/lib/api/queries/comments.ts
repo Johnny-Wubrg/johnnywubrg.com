@@ -1,4 +1,10 @@
-import type { Comment, CommentMutationResponse, PostQueryResponse } from '$lib/models';
+import type {
+	AddCommentMutationRequest,
+	Comment,
+	CommentMutationResponse,
+	PostQueryResponse,
+	QueryByIdRequest
+} from '$lib/models';
 import { gql } from './gql';
 
 export const commentFragment = gql<Comment>`
@@ -14,7 +20,7 @@ export const commentFragment = gql<Comment>`
 	}
 `;
 
-export const getCommentsQuery = gql<PostQueryResponse>`
+export const getCommentsQuery = gql<QueryByIdRequest, PostQueryResponse>`
 	query getComments($id: ID!) {
 		post(idType: DATABASE_ID, id: $id) {
 			databaseId
@@ -29,7 +35,7 @@ export const getCommentsQuery = gql<PostQueryResponse>`
 	${commentFragment}
 `;
 
-export const addCommentMutation = gql<CommentMutationResponse>`
+export const addCommentMutation = gql<AddCommentMutationRequest, CommentMutationResponse>`
 	mutation addComment($id: Int, $content: String, $author: String) {
 		createComment(input: { content: $content, commentOn: $id, author: $author }) {
 			clientMutationId

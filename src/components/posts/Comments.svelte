@@ -6,7 +6,7 @@
 	export let postId: number;
 
 	const getComments = async (id: number) => {
-		const { post } = await sendQuery(getCommentsQuery, { id: id.toString() });
+		const { post } = await sendQuery(getCommentsQuery, { id });
 		return post.comments.nodes;
 	};
 </script>
