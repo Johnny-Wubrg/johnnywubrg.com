@@ -1,10 +1,8 @@
 <script>
-	import { getContext } from 'svelte';
-
-	const title = getContext('siteTitle');
+	import { siteTitle } from '$lib/stores/site';
 </script>
 
-<svelte:head><title>{title} | You're totally lost!</title></svelte:head>
+<svelte:head><title>{$siteTitle} | You're totally lost!</title></svelte:head>
 
 <h1>
 	You're <a

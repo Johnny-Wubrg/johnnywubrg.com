@@ -2,7 +2,7 @@
 	import { onDestroy } from 'svelte';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
-	import navigationState from '$lib/stores/navigationState';
+	import { navigationState } from '$lib/stores/site';
 
 	const progress = tweened(0, {
 		duration: 3500,
@@ -41,7 +41,7 @@
 />
 
 <div class="progress-bar">
-		<div class="progress-sliver" style="--width: {$progress * 100}%;--opacity: {$opacity}" />
+	<div class="progress-sliver" style="--width: {$progress * 100}%;--opacity: {$opacity}" />
 </div>
 
 <style>

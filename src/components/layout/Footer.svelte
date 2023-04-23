@@ -1,6 +1,8 @@
 <script lang="ts">
-	export let menu;
-	export let social;
+	import type { MenuItem } from '$lib/models';
+
+	export let menu: MenuItem[];
+	export let social: MenuItem[];
 	export let title: string;
 	export let description: string;
 </script>

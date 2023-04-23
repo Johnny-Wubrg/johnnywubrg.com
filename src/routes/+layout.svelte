@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
 	import CardTooltip from '@/components/CardTooltip.svelte';
-	import { setContext } from 'svelte';
 	import Header from '@/components/layout/Header.svelte';
 	import Footer from '@/components/layout/Footer.svelte';
 	import MobileNav from '@/components/layout/MobileNav.svelte';
 	import { dev } from '$app/environment';
+	import { siteDescription, siteTitle } from '$lib/stores/site.js';
 
 	export let data;
 
@@ -13,8 +13,8 @@
 	const getMenu = (locationId) =>
 		menus.find((e) => e.locations.includes(locationId))?.menuItems?.nodes;
 
-	setContext('siteTitle', title);
-	setContext('siteDescription', description);
+	$siteTitle = title;
+	$siteDescription = description;
 
 	const footer = {
 		title,

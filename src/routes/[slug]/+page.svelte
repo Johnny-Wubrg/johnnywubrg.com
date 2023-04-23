@@ -1,16 +1,14 @@
 <script>
-
-	import { getContext } from 'svelte';
+	import { siteTitle } from '$lib/stores/site.js';
 	export let data;
 	const page = data.page;
-	const title = getContext('siteTitle');
 </script>
 
 <svelte:head>
 	{#if page.seo?.title}
 		<title>{page.seo.title}</title>
 	{:else}
-		<title>{title} | {page.title}</title>
+		<title>{$siteTitle} | {page.title}</title>
 	{/if}
 
 	{#if page.seo?.description}

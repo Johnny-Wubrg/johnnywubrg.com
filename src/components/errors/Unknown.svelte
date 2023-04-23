@@ -1,10 +1,9 @@
 <script>
-	import { getContext } from 'svelte';
+	import { siteTitle } from '$lib/stores/site';
 
-	const title = getContext('siteTitle');
 </script>
 
-<svelte:head><title>{title} | Unknown Error Occurred</title></svelte:head>
+<svelte:head><title>{$siteTitle} | Unknown Error Occurred</title></svelte:head>
 
 <h1>
 	<a
