@@ -1,21 +1,8 @@
-
+import { getCategoriesQuery } from '$lib/api/queries/categories';
 import { sendQuery } from '$lib/api/utils';
 
-const gql = String.raw;
-const query = gql`
-		query getCategories {
-			categories(where: { hideEmpty: true, orderby: TERM_ORDER }) {
-				nodes {
-					name
-					uri
-					description
-				}
-			}
-		}
-	`;
-
 export async function load() {
-	const { categories } = await sendQuery(query);
+	const { categories } = await sendQuery(getCategoriesQuery);
 
 	return {
 		categories: categories.nodes

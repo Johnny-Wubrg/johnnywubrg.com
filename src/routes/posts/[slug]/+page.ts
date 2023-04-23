@@ -3,49 +3,7 @@ import { error } from '@sveltejs/kit';
 export const prerender = true;
 import { sendQuery } from '$lib/api/utils';
 import DefaultPostTemplate from '@/templates/posts/default.svelte';
-
-const gql = String.raw;
-const query = gql`
-		query getPostBySlug($slug: ID!) {
-			post(id: $slug, idType: SLUG) {
-				postId
-				date
-				title
-				content
-				author {
-					node {
-						name
-					}
-				}
-				categories {
-					nodes {
-						name
-						slug
-					}
-				}
-				featuredImage {
-					node {
-						sourceUrl
-						altText
-						mediaDetails {
-							width
-							height
-						}
-						mediaSettings {
-							artistCredit
-						}
-					}
-				}
-				featuredCardSettings {
-					featuredCard
-				}
-				seo {
-					title
-					description
-				}
-			}
-		}
-	`;
+import { getPostQuery } from '$lib/api/queries/posts';
 
 const resolveTemplate = async (slugs: string[]) => {
 	for (const slug of slugs) {
@@ -61,7 +19,7 @@ const resolveTemplate = async (slugs: string[]) => {
 };
 
 export async function load({ params }) {
-	const { post } = await sendQuery(query, {
+	const { post } = await sendQuery(getPostQuery, {
 		slug: params.slug
 	});
 
