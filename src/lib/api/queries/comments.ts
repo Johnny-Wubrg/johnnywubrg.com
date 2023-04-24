@@ -35,6 +35,7 @@ export const getCommentsQuery = gql<CommentQueryRequest, PostQueryResponse>`
 	query getComments($postId: ID!) {
 		post(idType: DATABASE_ID, id: $postId) {
 			databaseId
+			commentStatus
 			comments {
 				nodes {
 					...CommentFields

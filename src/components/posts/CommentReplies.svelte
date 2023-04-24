@@ -1,10 +1,11 @@
 <script lang="ts">
-	import type { Comment } from '$lib/models';
+	import type { Comment, CommentStatus } from '$lib/models';
 	import CommentsForm from './CommentsForm.svelte';
 	import SingleComment from './SingleComment.svelte';
 
 	export let postId: number;
 	export let comment: Comment;
+	export let status: CommentStatus;
 
 	let replies = comment.replies;
 
@@ -30,12 +31,14 @@
 				{mode === 'list' ? 'Hide' : 'Show'} Replies ({replies.length})
 			</button> |
 		{/if}
-		<button on:click={toggleReply}>Reply</button>
+		{#if status === 'open'}
+			<button on:click={toggleReply}>Reply</button>
+		{/if}
 	</p>
 	{#if mode === 'list'}
 		<div class="list">
 			{#each replies as reply}
-				<SingleComment comment={reply} {postId} />
+				<SingleComment comment={reply} {postId} {status} />
 			{/each}
 		</div>
 	{/if}

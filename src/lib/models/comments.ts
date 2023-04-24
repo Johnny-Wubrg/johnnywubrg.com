@@ -1,6 +1,8 @@
 import type { User } from './users';
 import type { GraphMutationResponse, GraphNode } from './graph';
 
+export type CommentStatus = 'open' | 'closed';
+
 export interface Comment {
 	databaseId: number;
 	parentDatabaseId?: number;
@@ -12,7 +14,7 @@ export interface Comment {
 }
 
 export type CommentMutationResponse = {
-	createComment: GraphMutationResponse<'comment', Comment>
+	createComment: GraphMutationResponse<'comment', Comment>;
 };
 
 export interface CommentQueryRequest {

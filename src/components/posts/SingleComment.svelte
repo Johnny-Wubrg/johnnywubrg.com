@@ -1,10 +1,11 @@
 <script lang="ts">
-	import type { Comment } from '$lib/models';
+	import type { Comment, CommentStatus } from '$lib/models';
 	import { formatDateTime } from '$lib/utils/datetime';
 	import CommentReplies from './CommentReplies.svelte';
-
+  
 	export let postId: number;
 	export let comment: Comment;
+	export let status: CommentStatus;
 </script>
 
 <div class="comment">
@@ -15,7 +16,7 @@
 		{@html comment.content}
 	</div>
 
-	<CommentReplies {comment} {postId} />
+	<CommentReplies {comment} {postId} {status} />
 </div>
 
 <style lang="scss">

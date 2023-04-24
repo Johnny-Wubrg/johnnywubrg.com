@@ -5,11 +5,12 @@
 	import { sendQuery } from '$lib/api/utils';
 	import Loader from '../Loader.svelte';
 	import CommentsForm from './CommentsForm.svelte';
-	import type { Comment } from '$lib/models';
+	import type { Comment, CommentStatus } from '$lib/models';
 
 	export let postId: number;
 
 	let comments: Comment[] = null;
+	let status: CommentStatus;
 
 	const getComments = async (postId: number) => {
 		const { post } = await sendQuery(getCommentsQuery, { postId });
@@ -25,6 +26,7 @@
 			}
 		}
 
+		status = post.commentStatus;
 		comments = results.filter((e) => e.parentDatabaseId <= 0);
 	};
 </script>
@@ -37,15 +39,19 @@
 	{:then}
 		{#if comments.length}
 			{#each comments as comment}
-				<SingleComment {comment} {postId} />
+				<SingleComment {comment} {postId} {status} />
 			{/each}
 		{:else}
 			<p>No comments yet.</p>
 		{/if}
 
-		<CommentsForm {postId} on:commentCreated={(c) => (comments = [...comments, c.detail])}>
-			<h3>Post a Comment</h3>
-		</CommentsForm>
+		{#if status === 'open'}
+			<CommentsForm {postId} on:commentCreated={(c) => (comments = [...comments, c.detail])}>
+				<h3>Post a Comment</h3>
+			</CommentsForm>
+		{:else}
+			<p>Comments are closed for this post.</p>
+		{/if}
 	{/await}
 </div>
 

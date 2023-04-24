@@ -1,6 +1,6 @@
 import type { User } from './users';
 import type { Category } from './categories';
-import type { Comment } from './comments';
+import type { Comment, CommentStatus } from './comments';
 import type { GraphNode, GraphNodes, GraphQueryResponse } from './graph';
 import type { Medium } from './media';
 
@@ -24,6 +24,7 @@ export interface Post {
 	author: GraphNode<User>;
 	categories: GraphNodes<Category>;
 	featuredImage?: GraphNode<Medium>;
+	commentStatus: CommentStatus;
 	comments?: GraphNodes<Comment>;
 	seo: SeoSettings;
 }
