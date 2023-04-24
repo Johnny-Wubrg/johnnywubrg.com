@@ -17,6 +17,15 @@ export const commentFragment = gql<Comment>`
 		author {
 			node {
 				name
+				... on User {
+					id
+					email
+					roles {
+						nodes {
+							name
+						}
+					}
+				}
 			}
 		}
 	}

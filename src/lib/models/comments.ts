@@ -1,17 +1,19 @@
-import type { Author } from './author';
+import type { User } from './users';
 import type { GraphMutationResponse, GraphNode } from './graph';
 
 export interface Comment {
 	databaseId: number;
-	parentDatabaseId: number;
+	parentDatabaseId?: number;
 	content: string;
 	dateGmt: string;
 	karma?: number;
-	author: GraphNode<Author>;
+	author: GraphNode<User>;
 	replies?: Comment[];
 }
 
-export type CommentMutationResponse = GraphMutationResponse<'comment', Comment>;
+export type CommentMutationResponse = {
+	createComment: GraphMutationResponse<'comment', Comment>
+};
 
 export interface CommentQueryRequest {
 	postId: number;

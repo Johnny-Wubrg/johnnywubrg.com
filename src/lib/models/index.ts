@@ -1,4 +1,4 @@
-export * from './author';
+export * from './users';
 export * from './categories'
 export * from './comments'
 export * from './graph'

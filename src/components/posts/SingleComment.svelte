@@ -3,6 +3,7 @@
 	import { formatDateTime } from '$lib/utils/datetime';
 	import CommentReplies from './CommentReplies.svelte';
 
+	export let postId: number;
 	export let comment: Comment;
 </script>
 
@@ -13,8 +14,8 @@
 	<div class="content">
 		{@html comment.content}
 	</div>
-  
-	<CommentReplies replies={comment.replies} />
+
+	<CommentReplies {comment} {postId} />
 </div>
 
 <style lang="scss">

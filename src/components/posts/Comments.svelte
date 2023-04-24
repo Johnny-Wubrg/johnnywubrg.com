@@ -4,24 +4,28 @@
 	import { getCommentsQuery } from '$lib/api/queries/comments';
 	import { sendQuery } from '$lib/api/utils';
 	import Loader from '../Loader.svelte';
+	import CommentsForm from './CommentsForm.svelte';
+	import type { Comment } from '$lib/models';
 
 	export let postId: number;
 
+	let comments: Comment[] = null;
+
 	const getComments = async (postId: number) => {
 		const { post } = await sendQuery(getCommentsQuery, { postId });
-		const comments = [...post.comments.nodes];
+		const results = [...post.comments.nodes].sort((a, b) => (b > a ? -1 : 1));
 
-		const children = comments.filter((e) => e.parentDatabaseId > 0);
+		const children = results.filter((e) => e.parentDatabaseId > 0);
 
 		for (const child of children) {
-			const parent = comments.find((e) => e.databaseId === child.parentDatabaseId);
+			const parent = results.find((e) => e.databaseId === child.parentDatabaseId);
 			if (parent) {
 				parent.replies = parent.replies || [];
 				parent.replies.push(child);
 			}
 		}
 
-		return comments.filter((e) => e.parentDatabaseId <= 0);
+		comments = results.filter((e) => e.parentDatabaseId <= 0);
 	};
 </script>
 
@@ -30,14 +34,18 @@
 
 	{#await getComments(postId)}
 		<Loader />
-	{:then comments}
+	{:then}
 		{#if comments.length}
 			{#each comments as comment}
-				<SingleComment {comment} />
+				<SingleComment {comment} {postId} />
 			{/each}
 		{:else}
 			<p>No comments yet.</p>
 		{/if}
+
+		<CommentsForm {postId} on:commentCreated={(c) => (comments = [...comments, c.detail])}>
+			<h3>Post a Comment</h3>
+		</CommentsForm>
 	{/await}
 </div>
 
