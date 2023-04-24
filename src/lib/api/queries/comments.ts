@@ -2,14 +2,16 @@ import type {
 	AddCommentMutationRequest,
 	Comment,
 	CommentMutationResponse,
-	PostQueryResponse,
-	QueryByIdRequest
+	CommentQueryRequest,
+	PostQueryResponse
 } from '$lib/models';
 import { gql } from './gql';
 
 export const commentFragment = gql<Comment>`
 	fragment CommentFields on Comment {
 		content(format: RENDERED)
+		databaseId
+		parentDatabaseId
 		dateGmt
 		karma
 		author {
@@ -20,9 +22,9 @@ export const commentFragment = gql<Comment>`
 	}
 `;
 
-export const getCommentsQuery = gql<QueryByIdRequest, PostQueryResponse>`
-	query getComments($id: ID!) {
-		post(idType: DATABASE_ID, id: $id) {
+export const getCommentsQuery = gql<CommentQueryRequest, PostQueryResponse>`
+	query getComments($postId: ID!) {
+		post(idType: DATABASE_ID, id: $postId) {
 			databaseId
 			comments {
 				nodes {
@@ -36,8 +38,10 @@ export const getCommentsQuery = gql<QueryByIdRequest, PostQueryResponse>`
 `;
 
 export const addCommentMutation = gql<AddCommentMutationRequest, CommentMutationResponse>`
-	mutation addComment($id: Int, $content: String, $author: String) {
-		createComment(input: { content: $content, commentOn: $id, author: $author }) {
+	mutation addComment($postId: Int!, $content: String!, $author: String!, $parent: ID) {
+		createComment(
+			input: { content: $content, commentOn: $postId, author: $author, parent: $parent }
+		) {
 			clientMutationId
 			success
 			comment {
