@@ -9,6 +9,7 @@ export const getCurrentUserQuery = gql<ViewerQueryResponse>`
 			roles {
 				nodes {
 					name
+          displayName
 				}
 			}
 		}

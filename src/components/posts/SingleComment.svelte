@@ -1,16 +1,29 @@
 <script lang="ts">
 	import type { Comment, CommentStatus } from '$lib/models';
 	import { formatDateTime } from '$lib/utils/datetime';
+	import PlaneswalkerSymbol from '../svg/PlaneswalkerSymbol.svelte';
 	import CommentReplies from './CommentReplies.svelte';
-  
+
 	export let postId: number;
 	export let comment: Comment;
 	export let status: CommentStatus;
+
+	const roleRarityMap = {
+		administrator: 'mythic'
+	};
 </script>
 
 <div class="comment">
 	<p class="author">
-		{comment.author.node.name} | <time>{formatDateTime(comment.dateGmt)}</time>
+		{comment.author.node.name}
+		{#if comment.author.node.roles?.nodes.length}
+			<span class="user-badge" title={comment.author.node.roles.nodes[0].displayName}>
+				<PlaneswalkerSymbol
+					color={roleRarityMap[comment.author.node.roles.nodes[0].name] ?? 'common'}
+				/>
+			</span>
+		{/if}
+		| <time>{formatDateTime(comment.dateGmt)}</time>
 	</p>
 	<div class="content">
 		{@html comment.content}
@@ -32,7 +45,15 @@
 
 	.author {
 		font-weight: bold;
+		vertical-align: middle;
 		margin: 0 0 0.25em;
+	}
+
+	.user-badge {
+		vertical-align: middle;
+		height: auto;
+		width: 1ch;
+		display: inline-block;
 	}
 
 	.content {

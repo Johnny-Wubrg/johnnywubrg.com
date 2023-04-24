@@ -19,10 +19,10 @@ export const commentFragment = gql<Comment>`
 				name
 				... on User {
 					id
-					email
 					roles {
 						nodes {
 							name
+          		displayName
 						}
 					}
 				}
