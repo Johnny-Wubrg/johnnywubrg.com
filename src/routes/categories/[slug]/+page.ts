@@ -1,43 +1,8 @@
 import { error } from '@sveltejs/kit';
 
-import { sendQuery } from '@/utils/api';
+import { sendQuery } from '$lib/api/utils';
 import DefaultCategoryTemplate from '@/templates/categories/default.svelte';
-
-const gql = String.raw;
-const query = gql`
-		query getCategoryBySlug($slug: ID!) {
-			category(idType: SLUG, id: $slug) {
-				name
-				description
-				slug
-				posts {
-					nodes {
-						databaseId
-						uri
-						title
-						excerpt
-						date
-						featuredImage {
-							node {
-								sourceUrl
-								altText
-								mediaDetails {
-									width
-									height
-								}
-								mediaSettings {
-									artistCredit
-								}
-							}
-						}
-						featuredCardSettings {
-							featuredCard
-						}
-					}
-				}
-			}
-		}
-	`;
+import { getCategoryQuery } from '$lib/api/queries/categories.js';
 
 const resolveTemplate = async (category) => {
 	try {
@@ -51,7 +16,7 @@ const resolveTemplate = async (category) => {
 };
 
 export async function load({ params }) {
-	const { category } = await sendQuery(query, {
+	const { category } = await sendQuery(getCategoryQuery, {
 		slug: params.slug
 	});
 

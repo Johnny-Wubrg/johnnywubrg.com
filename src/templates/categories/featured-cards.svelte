@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { formatDate } from '@/utils/datetime';
-	import { restMtgUri } from '@/config/api';
+	import { formatDate } from '$lib/utils/datetime';
+	import { restMtgUri } from '$lib/config/api';
 
 	import Template from './default.svelte';
 	export let category;

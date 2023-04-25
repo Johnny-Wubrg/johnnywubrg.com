@@ -1,5 +1,7 @@
-<script>
-	export let card;
+<script lang="ts">
+	import type { FeaturedCardDetails } from '$lib/models';
+
+	export let card: FeaturedCardDetails;
 </script>
 
 <div class="featured-card">

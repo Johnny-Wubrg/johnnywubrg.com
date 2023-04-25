@@ -1,5 +1,7 @@
 <script lang="ts">
-	export let menu;
+	import type { MenuItem } from '$lib/models';
+
+	export let menu: MenuItem[];
 	export let depth = 0;
 
 	const populateDepthClasses = (type: string) => {

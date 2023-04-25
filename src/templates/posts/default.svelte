@@ -1,10 +1,8 @@
 <script>
 	import ParallaxHero from '@/components/ParallaxHero.svelte';
-	import { formatDate } from '@/utils/datetime';
-	import { getContext } from 'svelte';
+	import { formatDate } from '$lib/utils/datetime';
+	import { siteTitle } from '$lib/stores/site';
 	export let post;
-
-	const title = getContext('siteTitle');
 
 	const categories = post.categories?.nodes?.map((category) => category.name) ?? [];
 </script>
@@ -13,7 +11,7 @@
 	{#if post.seo?.title}
 		<title>{post.seo.title}</title>
 	{:else}
-		<title>{title} | {post.title}</title>
+		<title>{$siteTitle} | {post.title}</title>
 	{/if}
 
 	{#if post.seo?.description}

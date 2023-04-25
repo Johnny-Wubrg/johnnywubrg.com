@@ -1,6 +1,10 @@
-import { graphqlUri, restMtgUri } from '@/config/api';
+import { graphqlUri, restMtgUri } from '$lib/config/api';
+import type { GraphQuery, GraphResponse } from '$lib/models';
 
-export const sendQuery = async (query: string, variables: Record<string, string> = {}) => {
+export const sendQuery = async <TRequest, TResponse extends GraphResponse<any, any>>(
+	query: GraphQuery<TRequest, TResponse>,
+	variables: TRequest = null
+): Promise<TResponse> => {
 	const response = await fetch(graphqlUri, {
 		method: 'POST',
 		headers: {

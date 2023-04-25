@@ -1,5 +1,5 @@
 <script lang="ts">
-import { getCardImageUri } from '@/utils/api';
+	import { getCardImageUri } from '$lib/api/utils';
 
 	interface CardView {
 		image: string;

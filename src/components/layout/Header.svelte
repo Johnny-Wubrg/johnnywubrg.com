@@ -1,10 +1,11 @@
-<script>
+<script lang="ts">
 	import PageLoader from './PageLoader.svelte';
 	import NavList from './NavList.svelte';
 	import Logo from '../svg/Logo.svelte';
-	export let menu;
+	import type { MenuItem } from '$lib/models';
+	export let menu: MenuItem[];
 
-	let scrollY;
+	let scrollY: number;
 	$: scrolled = scrollY > 48;
 </script>
 

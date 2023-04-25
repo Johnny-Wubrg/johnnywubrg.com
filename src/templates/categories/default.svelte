@@ -1,14 +1,12 @@
 <script>
+	import { siteTitle } from '$lib/stores/site';
 	import PostList from '@/components/PostList.svelte';
-	import { getContext } from 'svelte';
 	export let category;
-
-	const title = getContext('siteTitle');
 </script>
 
 <svelte:head>
 	<title>
-		{title} | {category.name}
+		{$siteTitle} | {category.name}
 	</title>
 	{#if category.description}
 		<meta name="description" content={category.description} />

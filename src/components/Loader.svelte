@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
+
 	interface Card {
 		color: string;
 		zIndex: number;
@@ -12,8 +14,6 @@
 		{ color: 'var(--mtg-red)', zIndex: 2 },
 		{ color: 'var(--mtg-green)', zIndex: 1 }
 	];
-
-	const isClient = typeof window !== 'undefined';
 
 	type State = 'out' | 'in';
 	const rate = 0.05;
@@ -77,15 +77,19 @@
 		window.requestAnimationFrame(loop);
 	}
 
-	if (isClient) window.requestAnimationFrame(loop);
+	if (browser) window.requestAnimationFrame(loop);
 </script>
 
 <div class="loader">
 	{#each cards as card}
 		<div
 			class="card"
-			style="--color: {card.color};--z-index:{card.zIndex};--rotation:{card.rotation ||
-				0}deg;--translation:{card.translate || 0}%"
+			style="
+				--color: {card.color};
+				--z-index:{card.zIndex};
+				--rotation:{card.rotation || 0}deg;
+				--translation:{card.translate || 0}%
+			"
 		/>
 	{/each}
 </div>

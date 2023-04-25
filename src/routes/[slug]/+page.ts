@@ -1,28 +1,10 @@
 import { error } from '@sveltejs/kit';
 
-import { sendQuery } from '@/utils/api';
-
-const gql = String.raw;
-const query = gql`
-		query getPageBySlug($slug: ID!) {
-			page(id: $slug, idType: URI) {
-				content
-				title
-				author {
-					node {
-						name
-					}
-				}
-				seo {
-					title
-					description
-				}
-			}
-		}
-	`;
+import { sendQuery } from '$lib/api/utils';
+import { getPageQuery } from '$lib/api/queries/pages.js';
 
 export async function load({ params }) {
-	const { page: pageData } = await sendQuery(query, {
+	const { page: pageData } = await sendQuery(getPageQuery, {
 		slug: params.slug
 	});
 
