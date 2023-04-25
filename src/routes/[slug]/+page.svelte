@@ -1,5 +1,5 @@
 <script>
-	import { siteTitle } from '$lib/stores/site.js';
+	import { siteTitle } from '$lib/stores/site';
 	export let data;
 	const page = data.page;
 </script>
