@@ -15,6 +15,7 @@ const resolveTemplate = async (category) => {
 	}
 };
 
+export const prerender = false;
 export async function load({ params }) {
 	const { category } = await sendQuery(getCategoryQuery, {
 		slug: params.slug

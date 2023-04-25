@@ -1,6 +1,5 @@
 import { error } from '@sveltejs/kit';
 
-export const prerender = true;
 import { sendQuery } from '$lib/api/utils';
 import DefaultPostTemplate from '@/templates/posts/default.svelte';
 import { getPostQuery } from '$lib/api/queries/posts';
@@ -14,10 +13,11 @@ const resolveTemplate = async (slugs: string[]) => {
 			continue;
 		}
 	}
-
+	
 	return DefaultPostTemplate;
 };
 
+export const prerender = false;
 export async function load({ params }) {
 	const { post } = await sendQuery(getPostQuery, {
 		slug: params.slug
