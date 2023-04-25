@@ -2,7 +2,9 @@
 	import { browser } from '$app/environment';
 	import Comments from '@/components/posts/Comments.svelte';
 	export let data;
-	const { slug, post, template } = data;
+	
+	$: post = data.post;
+	$: template = data.template;
 </script>
 
 <svelte:component this={template} {post} />

@@ -1,7 +1,7 @@
 <script>
 	import { siteTitle } from '$lib/stores/site';
 	export let data;
-	const page = data.page;
+	$: page = data.page;
 </script>
 
 <svelte:head>
@@ -17,6 +17,7 @@
 
 	<meta name="author" content={page.author.node.name} />
 </svelte:head>
+
 
 <div class="content-wrap container">
 	<div class="content-main">
