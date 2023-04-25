@@ -6,7 +6,7 @@ export const getMenusQuery = gql<MenusQueryResponse>`
 			menus {
 				nodes {
 					locations
-					menuItems(where: { parentId: "null" }) {
+					menuItems(where: { parentId: null }) {
 						nodes {
 							...MenuItemFields
 							...MenuRecursive
