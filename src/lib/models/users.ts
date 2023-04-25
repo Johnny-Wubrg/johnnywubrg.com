@@ -8,6 +8,12 @@ export interface Author {
 export interface User extends Author {
 	id: string;
 	roles?: GraphNodes<Role>;
+	badge?: UserBadge;
+}
+
+export interface UserBadge {
+	label: string;
+	rarityCode: string;
 }
 
 export type ViewerQueryResponse = GraphQueryResponse<'viewer', User>;

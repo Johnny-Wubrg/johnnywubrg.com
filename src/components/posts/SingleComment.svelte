@@ -7,23 +7,17 @@
 	export let postId: number;
 	export let comment: Comment;
 	export let status: CommentStatus;
-
-	const roleRarityMap = {
-		administrator: 'mythic'
-	};
 </script>
 
 <div class="comment">
 	<p class="author">
 		{comment.author.node.name}
-		{#if comment.author.node.roles?.nodes.length}
-			<span class="user-badge" title={comment.author.node.roles.nodes[0].displayName}>
+		{#if comment.author.node.badge}
+			<span class="user-badge" title={comment.author.node.badge.label}>
 				<PlaneswalkerSymbol
-					color={roleRarityMap[comment.author.node.roles.nodes[0].name] ?? 'common'}
+					color={comment.author.node.badge.rarityCode}
 				/>
-			</span>
-		{/if}
-		| <time>{formatDateTime(comment.dateGmt)}</time>
+			</span>{/if} | <time>{formatDateTime(comment.dateGmt)}</time>
 	</p>
 	<div class="content">
 		{@html comment.content}

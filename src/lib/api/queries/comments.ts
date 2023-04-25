@@ -19,11 +19,9 @@ export const commentFragment = gql<Comment>`
 				name
 				... on User {
 					id
-					roles {
-						nodes {
-							name
-          		displayName
-						}
+					badge {
+						label
+						rarityCode
 					}
 				}
 			}
