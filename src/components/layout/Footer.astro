@@ -19,7 +19,7 @@ const menu: MenuItem[] = [
           {SITE_TITLE}: {SITE_DESCRIPTION}
           {
             menu?.length &&
-              menu.map((item) => <a href={item.path}>{item.label}</a>)
+              menu.map((item) => <>| <a href={item.path}>{item.label}</a></>)
           }
         </p>
       </div>
