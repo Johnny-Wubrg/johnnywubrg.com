@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from '../utility/FormattedDate.astro';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+---
+
+<article class="post">
+  {
+    post.data.heroImage && (
+      <a href={`/posts/${post.id}/`} class="post-thumbnail">
+        <Image width={1020} height={510} src={post.data.heroImage} alt="" />
+
+        {/* {post.categories?.nodes?.length ? (
+        <h2 class="post-category">{post.categories.nodes[0].name}</h2>
+      ) : null} */}
+      </a>
+    )
+  }
+  <div class="post-content">
+    <div class="post-headline">
+      <h2>
+        <a href={`/posts/${post.id}/`}>{post.data.title}</a>
+      </h2>
+      <span>
+        <FormattedDate date={post.data.pubDate} />
+      </span>
+    </div>
+    <div set:html={post.data.description} />
+    <!-- {
+      post.featuredImage?.node?.mediaSettings?.artistCredit && (
+        <p>
+          🖌️ Artist Credit: {post.featuredImage.node.mediaSettings.artistCredit}
+        </p>
+      )
+    } -->
+  </div>
+</article>
+
+<style>
+  .post {
+    display: block;
+  }
+
+  @media (min-width: 640px) {
+    .post {
+      display: flex;
+    }
+
+    .post-thumbnail {
+      margin-right: 1em;
+    }
+  }
+
+  .post-thumbnail {
+    position: relative;
+    display: block;
+    flex: 0 0 30%;
+  }
+
+  .post-thumbnail img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 6 / 4;
+  }
+
+  .post-category {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.5em;
+    color: var(--color-white);
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .post-content {
+    flex: 1 1 auto;
+  }
+
+  .post-headline h2 {
+    margin: 0;
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+</style>

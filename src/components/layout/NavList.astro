@@ -1,0 +1,95 @@
+---
+interface MenuItem {
+  path: string;
+  label: string;
+  childItems?: MenuItem[];
+}
+
+interface Props {
+  menu: MenuItem[];
+  depth?: number;
+}
+
+const { menu, depth = 0 } = Astro.props;
+
+const populateDepthClasses = (type: string) => {
+  const base = `nav-${type}`;
+  const decorator = depth === 0 ? 'root' : 'child';
+
+  return [base, `${base}-${depth}`, `${base}-${decorator}`];
+};
+
+const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
+const subpath = pathname.match(/[^\/]+/g);
+const isActive = (href: string) =>
+  href === pathname || href === '/' + (subpath?.[0] || '');
+---
+
+<ul class:list={populateDepthClasses('list')}>
+  {
+    menu.map((item) => (
+      <li class:list={populateDepthClasses('item')}>
+        <a class:list={populateDepthClasses('link')} href={item.path}>
+          <span class="nav-label">{item.label}</span>
+          {item.childItems?.length ? '&gt;' : ''}
+        </a>
+
+        <a
+          href={item.path}
+          class:list={[
+            ...populateDepthClasses('link'),
+            { active: isActive(item.path) },
+          ]}
+        >
+          <slot />
+        </a>
+        {item.childItems?.length && (
+          <svelte:self menu={item.childItems} depth={depth + 1} />
+        )}
+      </li>
+    ))
+  }
+</ul>
+
+<style lang="scss">
+  @use 'src/styles/mixins';
+
+  .nav {
+    &-list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      @include mixins.breakpoint(small) {
+        display: flex;
+      }
+      &-child {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+      }
+    }
+    &-item {
+      position: relative;
+      transition: font-size 200ms;
+      &:hover,
+      &:focus,
+      &:focus-within {
+        > .nav-list-child {
+          display: block;
+        }
+      }
+      &-child {
+        font-size: 1em;
+        white-space: nowrap;
+      }
+    }
+    &-link {
+      padding: 1em;
+      display: block;
+      text-decoration: none;
+      font-family: var(--font-title);
+      font-weight: normal;
+    }
+  }
+</style>

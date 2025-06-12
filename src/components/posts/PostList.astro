@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import PostExcerpt from './PostExcerpt.astro';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+{posts && posts.length > 0 ? (
+  <ul>
+    {posts.map(post => (
+      <li>
+        <PostExcerpt post={post} />
+      </li>
+    ))}
+  </ul>
+) : (
+  <p>No posts found.</p>
+)}
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul li + li {
+    margin-top: 2rem;
+  }
+</style>

@@ -1,0 +1,29 @@
+$themes: (
+	default: (
+		background: var(--color-white-2),
+		text: var(--color-dark-gray),
+		highlight: var(--color-white),
+		border: var(--color-gray),
+		link: var(--mtg-blue-dark),
+		tint: var(--color-purple)
+	),
+		dark: (
+			background: var(--color-black),
+			highlight: var(--color-black),
+			text: var(--color-white),
+			border: var(--color-gray),
+			link: var(--color-white-2),
+			tint: var(--color-gray)
+	)
+);
+
+@mixin use-theme($theme) {
+	@if (map-has-key($themes, $theme) == false) {
+		@error "#{$theme} is not a valid theme.";
+	}
+	$values: map-get($themes, $theme);
+
+	@each $name, $value in $values {
+		--color-#{$name}: #{$value};
+	}
+}

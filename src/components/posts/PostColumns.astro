@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import PostExcerpt from './PostExcerpt.astro';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+{
+  posts && posts.length > 0 ? (
+    <ul>
+      {posts.map((post) => (
+        <li>
+          <PostExcerpt post={post} />
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>No posts found.</p>
+  )
+}
+
+<style lang="scss">
+  @use 'src/styles/mixins';
+  ul {
+    list-style: none;
+    padding: 0;
+    gap: 1em;
+    margin-bottom: 2em;
+
+    @include mixins.breakpoint(small) {
+      display: flex;
+    }
+
+    li {
+      flex: 0 1 50%;
+
+      :global(.post) {
+        display: block;
+      }
+
+      :global(.post-thumbnail) {
+        margin: 0;
+        margin-bottom: 1em;
+      }
+    }
+  }
+</style>

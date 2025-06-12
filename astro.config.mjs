@@ -6,20 +6,18 @@ import remarkCardLink from './plugins/remark-cardlink';
 import AutoImport from 'astro-auto-import';
 import remarkMoxfield from './plugins/remark-moxfield';
 
+import svelte from '@astrojs/svelte';
+
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
-	
-  integrations: [
-    AutoImport({
-      imports: [
-        '@components/global/CardLink.astro',
-        '@components/global/MoxfieldDecklist.astro'
-      ],
-    }),
-    mdx(),
-    sitemap(),
-  ],
+    site: 'https://example.com',
+    
+  integrations: [AutoImport({
+    imports: [
+      '@components/global/CardLink.astro',
+      '@components/global/MoxfieldDecklist.astro'
+    ],
+  }), mdx(), sitemap(), svelte()],
   markdown: {
     remarkPlugins: [
       remarkMoxfield,
