@@ -22,13 +22,13 @@ export default function remarkCardLink() {
 
         children.push({
           type: 'mdxJsxTextElement',
-          name: 'MoxfieldDecklist',
+          name: 'Decklist',
           attributes: [
             {
               type: 'mdxJsxAttribute',
               name: 'id',
               value: decklistId,
-            },
+            }
           ],
           children: [],
         });

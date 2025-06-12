@@ -7,17 +7,16 @@ import AutoImport from 'astro-auto-import';
 import remarkMoxfield from './plugins/remark-moxfield';
 
 import svelte from '@astrojs/svelte';
-import { defaultLayout } from 'astro-default-layout';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://johnnywubrg.com',
 
   integrations: [
     AutoImport({
       imports: [
         '@components/global/CardLink.astro',
-        '@components/global/MoxfieldDecklist.astro',
+        '@components/global/Decklist.astro',
       ],
     }),
     mdx(),

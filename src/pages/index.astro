@@ -6,42 +6,44 @@ import PostColumns from '@components/posts/PostColumns.astro';
 import PostList from '@components/posts/PostList.astro';
 import { getCollection } from 'astro:content';
 
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .splice(0, 3);
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-).splice(0, 3);
+const title = `${SITE_TITLE} | A Magic: the Gathering Blog for Combo Player`;
 ---
 
-<head>
-  <title>{SITE_TITLE} | A Magic: the Gathering Blog for Combo Players</title>
-</head>
-
-<BaseLayout>
+<BaseLayout {title}>
   <HomepageHero client:load />
 
-	<div class="content-wrap container">
-		<div class="content-main">
-			{posts.length > 0 ? (
-				<section>
-					<h1>Latest Posts</h1>
-	
-					{posts.length > 1 ? (
-						<PostColumns posts={posts} />
-					) : (
-						<PostList posts={posts} />
-					)}
-	
-					<div class="actions">
-						<a class="button" href="/posts">All Posts</a>
-					</div>
-				</section>
-			) : (
-				<section style="text-align: center;">
-					<h1>Whoops, you're here early!</h1>
-					<p>Check back later for some exciting Magic: the Gathering articles!</p>
-				</section>
-			)}
-		</div>
-	</div>
-	
+  <div class="content-wrap container">
+    <div class="content-main">
+      {
+        posts.length > 0 ? (
+          <section>
+            <h1>Latest Posts</h1>
+
+            {posts.length > 1 ? (
+              <PostColumns posts={posts} />
+            ) : (
+              <PostList posts={posts} />
+            )}
+
+            <div class="actions">
+              <a class="button" href="/posts">
+                All Posts
+              </a>
+            </div>
+          </section>
+        ) : (
+          <section style="text-align: center;">
+            <h1>Whoops, you're here early!</h1>
+            <p>
+              Check back later for some exciting Magic: the Gathering articles!
+            </p>
+          </section>
+        )
+      }
+    </div>
+  </div>
 </BaseLayout>

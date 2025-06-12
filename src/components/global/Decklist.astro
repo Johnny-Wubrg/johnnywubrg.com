@@ -1,0 +1,7 @@
+---
+import MoxfieldDecklist from './MoxfieldDecklist.svelte'
+
+const {id} = Astro.props;
+---
+
+<MoxfieldDecklist {id} client:only />

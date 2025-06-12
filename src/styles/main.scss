@@ -54,11 +54,11 @@
 }
 
 // TODO
-// @media (prefers-color-scheme: dark) {
-// 	:root {
-// 		@include use-theme(dark);
-// 	}
-// }
+@media (prefers-color-scheme: dark) {
+	:root {
+		@include use-theme(dark);
+	}
+}
 
 html,
 body {

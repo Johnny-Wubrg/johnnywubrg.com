@@ -11,27 +11,21 @@ const post = Astro.props;
 const { title, description, pubDate, updatedDate, heroImage } = post;
 
 const categories = [];
-const artistCredit = ''; //post.featuredImage?.node?.mediaSettings?.artistCredit;
+const artistCredit = post.artistCredit;
 const authorName = 'Johnny Wubrg'; //post.author?.node?.name;
 
 const seoTitle = `${SITE_DESCRIPTION} | ${title}`;
 const seoDescription = description ?? SITE_DESCRIPTION;
 ---
 
-<head>
-  <title>{seoTitle}</title>
-  {seoDescription && <meta name="description" content={seoDescription} />}
-  {authorName && <meta name="author" content={authorName} />}
-</head>
-
-<Base {title} {description}>
+<Base title={seoTitle} description={seoDescription}>
   <article class="post-wrap">
     {heroImage ? (
       <ParallaxHero src={heroImage.src} client:load>
         <h1>{title}</h1>
         <p class="post-meta">
           {authorName} on <FormattedDate date={pubDate} />
-          {/* {artistCredit && <> | 🖌️ Artist Credit: {artistCredit}</>} */}
+          {artistCredit && <> | 🖌️ Artist Credit: {artistCredit}</>}
         </p>
       </ParallaxHero>
     ) : (
@@ -39,7 +33,7 @@ const seoDescription = description ?? SITE_DESCRIPTION;
         <h1>{title}</h1>
         <p class="post-meta">
           {authorName} on <FormattedDate date={pubDate} />
-          {/* {artistCredit && <> | 🖌️ Artist Credit: {artistCredit}</>} */}
+          {artistCredit && <> | 🖌️ Artist Credit: {artistCredit}</>}
         </p>
       </div>
     )}

@@ -1,18 +1,33 @@
 ---
 import type { MarkdownLayoutProps } from 'astro';
 import Layout from './Base.astro';
+import ParallaxHero from 'src/components/layout/ParallaxHero.svelte';
 
 type Props = MarkdownLayoutProps<{
   title: string;
   description: string;
+  hero?: {
+    src: string;
+    title?: string;
+    description?: string;
+  };
 }>;
 
 const { frontmatter } = Astro.props;
 
-const { title, description } = frontmatter;
+const { title, description, hero } = frontmatter;
 ---
 
 <Layout {title} {description}>
+  {
+    hero && (
+      <ParallaxHero src={hero.src} client:load>
+        <h1>{hero.title || title}</h1>
+        {hero.description && <p class="post-meta">{hero.description}</p>}
+      </ParallaxHero>
+    )
+  }
+  <slot name="hero" />
   <div class="content-wrap container">
     <div class="content-main">
       <slot />
