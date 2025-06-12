@@ -11,10 +11,12 @@ if (!response.ok) {
 }
 
 const card = await response.json();
+const uri = new URL(card.scryfall_uri);
+uri.search = '';
 ---
 
 <a
-  href={card.scryfall_uri}
+  href={uri}
   target="_blank"
   rel="noopener noreferrer"
   data-hover-src={card.image_uris?.small ?? ''}

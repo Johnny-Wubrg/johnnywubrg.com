@@ -4,6 +4,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import remarkCardLink from './plugins/remark-cardlink';
 import AutoImport from 'astro-auto-import';
+import remarkMoxfield from './plugins/remark-moxfield';
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,12 +12,18 @@ export default defineConfig({
 	
   integrations: [
     AutoImport({
-      imports: ['@components/global/CardLink.astro'],
+      imports: [
+        '@components/global/CardLink.astro',
+        '@components/global/MoxfieldDecklist.astro'
+      ],
     }),
     mdx(),
     sitemap(),
   ],
   markdown: {
-    remarkPlugins: [remarkCardLink],
+    remarkPlugins: [
+      remarkMoxfield,
+      remarkCardLink,
+    ],
   },
 });
