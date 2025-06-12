@@ -1,0 +1,22 @@
+---
+const { name } = Astro.props;
+
+// Make HTTP request to Scryfall API
+const response = await fetch(
+  `https://api.scryfall.com/cards/named?fuzzy=${encodeURIComponent(name)}`
+);
+
+if (!response.ok) {
+  throw new Error(`Could not find card: ${name}`);
+}
+
+const card = await response.json();
+---
+
+<a
+  href={card.scryfall_uri}
+  target="_blank"
+  rel="noopener noreferrer"
+  data-hover-src={card.image_uris?.small ?? ''}
+  data-hover-alt={card.name}>{card.name}</a
+>
