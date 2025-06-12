@@ -25,6 +25,6 @@ export default defineConfig({
     svelte(),
   ],
   markdown: {
-    remarkPlugins: [defaultLayout, remarkMoxfield, remarkCardLink],
+    remarkPlugins: [remarkMoxfield, remarkCardLink],
   },
 });

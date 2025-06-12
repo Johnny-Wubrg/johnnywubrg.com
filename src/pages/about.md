@@ -1,5 +1,5 @@
 ---
-# layout: 'src/layouts/Page.astro'
+layout: 'src/layouts/Page.astro'
 title: About Me
 description: Lorem ipsum dolor sit amet
 ---
