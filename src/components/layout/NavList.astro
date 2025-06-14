@@ -29,22 +29,18 @@ const isActive = (href: string) =>
   {
     menu.map((item) => (
       <li class:list={populateDepthClasses('item')}>
-        <a class:list={populateDepthClasses('link')} href={item.path}>
-          <span class="nav-label">{item.label}</span>
-          {item.childItems?.length ? '&gt;' : ''}
-        </a>
-
         <a
-          href={item.path}
           class:list={[
             ...populateDepthClasses('link'),
             { active: isActive(item.path) },
           ]}
+          href={item.path}
         >
-          <slot />
+          <span class="nav-label">{item.label}</span>
+          {item.childItems?.length && <>&gt;</>}
         </a>
         {item.childItems?.length && (
-          <svelte:self menu={item.childItems} depth={depth + 1} />
+          <Astro.self menu={item.childItems} depth={depth + 1} />
         )}
       </li>
     ))
@@ -67,6 +63,8 @@ const isActive = (href: string) =>
         position: absolute;
         top: 100%;
         right: 0;
+        background: var(--color-dark-gray);
+        left: 0;
       }
     }
     &-item {

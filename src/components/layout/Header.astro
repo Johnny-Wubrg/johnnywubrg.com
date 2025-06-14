@@ -8,10 +8,10 @@ const menu: MenuItem[] = [
     path: '/',
     label: 'Home',
   },
-	{
-		path: '/about',
-		label: 'About'
-	}
+  {
+    path: '/about',
+    label: 'About',
+  },
 ];
 ---
 
@@ -33,6 +33,13 @@ const menu: MenuItem[] = [
     }
   </div>
 </header>
+
+<script>
+  document.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+    header?.classList.toggle('scrolled', window.scrollY > 48);
+  });
+</script>
 
 <style lang="scss">
   @use 'src/styles/mixins';
