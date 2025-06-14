@@ -9,6 +9,7 @@ type Props = MarkdownLayoutProps<{
   hero?: {
     src: string;
     title?: string;
+    anchor?: string;
     description?: string;
   };
 }>;
@@ -21,7 +22,7 @@ const { title, description, hero } = frontmatter;
 <Layout {title} {description}>
   {
     hero && (
-      <ParallaxHero src={hero.src} client:load>
+      <ParallaxHero src={hero.src} anchor={hero.anchor} client:load>
         <h1>{hero.title || title}</h1>
         {hero.description && <p class="post-meta">{hero.description}</p>}
       </ParallaxHero>

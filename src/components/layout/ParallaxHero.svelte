@@ -1,5 +1,8 @@
 <script lang="ts">
+  type Anchor = 'center' | 'top' | 'bottom';
+
   export let src: string;
+  export let anchor: Anchor = 'center';
 
   let scroll: number;
 
@@ -8,7 +11,10 @@
 
 <svelte:window bind:scrollY={scroll} />
 
-<div class="hero" style="--background: url({src}); --offset: {offset}px">
+<div
+  class={['hero', `anchor-${anchor}`]}
+  style="--background: url({src}); --offset: {offset}px"
+>
   <slot name="content">
     <div class="hero-content">
       <div class="hero-text">
@@ -24,7 +30,19 @@
     position: relative;
     background-image: var(--background);
     background-size: cover;
-    background-position: center calc(50% + var(--offset));
+    background-position: center;
+    
+    &.anchor-top {
+      background-position-y: var(--offset);
+    }
+    
+    &.anchor-center {
+      background-position-y: calc(50% + var(--offset));
+    }
+
+    &.anchor-bottom {
+      background-position-y: calc(100% + var(--offset));
+    }
     padding: 1em 0;
 
     @include mixins.breakpoint(small) {
@@ -49,7 +67,11 @@
         backdrop-filter: blur(2em) brightness(0.7);
 
         @media (prefers-color-scheme: dark) {
-          background: color-mix(in srgb, var(--color-background) 60%, transparent);
+          background: color-mix(
+            in srgb,
+            var(--color-background) 60%,
+            transparent
+          );
         }
       }
     }
