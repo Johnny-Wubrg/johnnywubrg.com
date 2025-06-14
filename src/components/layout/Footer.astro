@@ -9,6 +9,21 @@ const menu: MenuItem[] = [
     path: '/privacy',
   },
 ];
+
+const social: MenuItem[] = [
+  {
+    label: 'Reddit',
+    path: 'https://www.reddit.com/user/johnny-wubrg/',
+  },
+  {
+    label: 'Moxfield',
+    path: 'https://moxfield.com/users/JohnnyWubrg'
+  },
+  {
+    label: 'RSS',
+    path: '/rss.xml',
+  },
+];
 ---
 
 <footer class="footer">
@@ -16,24 +31,34 @@ const menu: MenuItem[] = [
     <div class="footer-top">
       <div class="info">
         <p>
-          {SITE_TITLE}: {SITE_DESCRIPTION}
+          A <a href="/">{SITE_TITLE}</a> catastrophe by <a
+            href="https://www.quangdao.com">Quangdao Nguyen</a
+          >. All rights reserved.
           {
             menu?.length &&
-              menu.map((item) => <>| <a href={item.path}>{item.label}</a></>)
+              menu.map((item) => (
+                <>
+                  | <a href={item.path}>{item.label}</a>
+                </>
+              ))
           }
         </p>
       </div>
 
-      <!-- {#if social?.length}
-				<div class="social">
-					<p>
-						{#each social as item, i}
-							{#if i !== 0} | {/if}
-							<a href={item.path} target="_blank">{item.label}</a>
-						{/each}
-					</p>
-				</div>
-			{/if} -->
+      {
+        social?.length && (
+          <div class="social">
+            <p>
+              {social.map((item, i) => (
+                <>
+                  {i !== 0 && <> &bull; </>}
+                  <a href={item.path} target="_blank">{item.label}</a>
+                </>
+              ))}
+            </p>
+          </div>
+        )
+      }
     </div>
     <div class="footer-bottom">
       <p class="disclaimer">
