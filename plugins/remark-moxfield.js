@@ -1,6 +1,6 @@
 import { visit } from 'unist-util-visit';
 
-export default function remarkCardLink() {
+export default function remarkMoxfield() {
   return (tree) => {
     visit(tree, 'text', (node, index, parent) => {
       const regex = /\[mox:([a-zA-Z\d\-_]+)\]/g;
