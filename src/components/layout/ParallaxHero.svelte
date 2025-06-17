@@ -31,9 +31,10 @@
     background-image: var(--background);
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     
     &.anchor-top {
-      background-position-y: var(--offset);
+      background-position-y: calc(0px + var(--offset));
     }
     
     &.anchor-center {

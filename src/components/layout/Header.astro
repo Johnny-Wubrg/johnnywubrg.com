@@ -43,9 +43,11 @@ const menu: MenuItem[] = [
 
 <style lang="scss">
   @use 'src/styles/mixins';
+  $transition-duration: 200ms;
 
   .header {
     position: sticky;
+    transition: margin $transition-duration;
     top: 0;
     background: var(--color-background);
     z-index: 90;
@@ -71,7 +73,7 @@ const menu: MenuItem[] = [
     }
     &-brand {
       margin: 0;
-      transition: font-size 200ms;
+      transition: font-size $transition-duration;
       padding: 0.5em 0;
       font-size: 1.2em;
       a {
@@ -89,6 +91,7 @@ const menu: MenuItem[] = [
 
     @include mixins.breakpoint(small) {
       &.scrolled {
+        margin-bottom: 2.72em;
         .header-brand {
           font-size: 1.2em;
         }
