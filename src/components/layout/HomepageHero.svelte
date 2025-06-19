@@ -2,41 +2,33 @@
   import { SITE_DESCRIPTION } from 'src/consts';
   import ParallaxHero from './ParallaxHero.svelte';
 
-  export let description: string;
-
-  let scroll: number = 0;
-  let heroHeight = 1000;
-  $: bgOpacity = Math.min(0.9, 0.5 + (scroll / heroHeight) * 0.5);
+  let scroll = $state(0);
+  let heroHeight = $state(1000);
+  let bgOpacity = $derived(Math.min(0.9, 0.5 + (scroll / heroHeight) * 0.5));
 </script>
 
 <svelte:window bind:scrollY={scroll} />
 
 <div class="homepage-hero" bind:clientHeight={heroHeight}>
   <ParallaxHero src="/hero-background.jpeg">
-    <div slot="content" class="content" style="--bg-opacity: {bgOpacity}">
-      <div class="container">
-        <div class="intro">
-          <h2>{SITE_DESCRIPTION}</h2>
-          <p>🖌️ Background Art: Isochron Scepter by Mark Harrison</p>
+    {#snippet content()}
+      <div class="content" style="--bg-opacity: {bgOpacity}">
+        <div class="container">
+          <div class="intro">
+            <h2>{SITE_DESCRIPTION}</h2>
+            <p>🖌️ Background Art: Isochron Scepter by Mark Harrison</p>
+          </div>
         </div>
       </div>
-    </div>
+    {/snippet}
   </ParallaxHero>
 </div>
 
 <style lang="scss">
   @use 'src/styles/mixins';
-
   .homepage-hero {
     :global(.hero) {
       height: auto;
-    }
-    hr {
-      border-color: var(--color-white);
-      margin-bottom: 1em;
-      @include mixins.breakpoint(small) {
-        display: none;
-      }
     }
   }
   .content {

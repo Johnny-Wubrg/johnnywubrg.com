@@ -1,7 +1,9 @@
+@use 'mixins';
+
 %container {
 	padding: 1rem;
 	margin: 1em auto;
-	@include breakpoint(small) {
+	@include mixins.breakpoint(small) {
 		max-width: var(--container-width);
 	}
 }

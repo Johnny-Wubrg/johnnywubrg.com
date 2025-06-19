@@ -1,12 +1,18 @@
 <script lang="ts">
+  import type { Snippet } from 'svelte';
+  
   type Anchor = 'center' | 'top' | 'bottom';
-
-  export let src: string;
-  export let anchor: Anchor = 'center';
-
-  let scroll: number;
-
-  $: offset = Math.round((scroll ?? 0) * 0.6);
+  
+  interface Props {
+    src: string;
+    anchor?: Anchor;
+    content?: Snippet;
+    children?: Snippet;
+  }
+  
+  let { src, anchor = 'center', content, children }: Props = $props();
+  let scroll = $state<number>(0);
+  let offset = $derived(Math.round((scroll ?? 0) * 0.6));
 </script>
 
 <svelte:window bind:scrollY={scroll} />
@@ -15,13 +21,17 @@
   class={['hero', `anchor-${anchor}`]}
   style="--background: url({src}); --offset: {offset}px"
 >
-  <slot name="content">
+  {#if content}
+    {@render content()}
+  {:else}
     <div class="hero-content">
       <div class="hero-text">
-        <slot />
+        {#if children}
+          {@render children()}
+        {/if}
       </div>
     </div>
-  </slot>
+  {/if}
 </div>
 
 <style lang="scss">

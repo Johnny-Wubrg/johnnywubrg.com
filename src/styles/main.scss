@@ -1,5 +1,7 @@
-@import 'globals';
-@import 'fonts';
+@use 'themes';
+@use 'mixins';
+@use 'partials';
+@use 'fonts';
 
 :root {
   --container-width: 90%;
@@ -44,7 +46,7 @@
 
   /* Themes */
 
-  @include use-theme(default);
+  @include themes.use-theme(default);
 
   --mtg-white: var(--mtg-white-light);
   --mtg-blue: var(--mtg-blue-light);
@@ -56,7 +58,7 @@
 // TODO
 @media (prefers-color-scheme: dark) {
   :root {
-    @include use-theme(dark);
+    @include themes.use-theme(dark);
   }
 }
 
@@ -69,7 +71,7 @@ body {
   font-size: 18px;
   color: var(--color-text);
   font-weight: 300;
-  @include breakpoint(hd) {
+  @include mixins.breakpoint(hd) {
     font-size: 24px;
   }
 }
@@ -111,4 +113,12 @@ button {
   flex: 1 1 auto;
 }
 
-@import 'components/buttons';
+.button {
+  display: inline-block;
+  background: var(--color-link);
+  color: var(--color-background);
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border: none;
+  line-height: 1.2;
+}
