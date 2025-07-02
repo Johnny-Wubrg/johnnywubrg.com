@@ -17,7 +17,7 @@ const social: MenuItem[] = [
   },
   {
     label: 'Moxfield',
-    path: 'https://moxfield.com/users/JohnnyWubrg'
+    path: 'https://moxfield.com/users/JohnnyWubrg',
   },
   {
     label: 'RSS',
@@ -52,7 +52,9 @@ const social: MenuItem[] = [
               {social.map((item, i) => (
                 <>
                   {i !== 0 && <> &bull; </>}
-                  <a href={item.path} target="_blank">{item.label}</a>
+                  <a href={item.path} target="_blank">
+                    {item.label}
+                  </a>
                 </>
               ))}
             </p>
@@ -68,9 +70,13 @@ const social: MenuItem[] = [
         by, endorsed by, supported by, or affiliated with Wizards of the Coast.
       </p>
 
-      <p class="disclaimer">
+      <p class="disclaimer" style="float: left;">
         Portions of this site is powered by <b>Scryfall</b>, which is not an
         affiliate of this site.
+      </p>
+
+      <p class="disclaimer" style="float: right">
+        Why was the leonin obsessed with infinite combos? Because he was Ajani.
       </p>
     </div>
   </div>

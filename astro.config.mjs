@@ -26,4 +26,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkMoxfield, remarkCardLink],
   },
+  redirects: {
+    '/about': '/posts/welcome/'
+  }
 });

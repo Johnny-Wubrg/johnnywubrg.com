@@ -8,11 +8,11 @@ import FormattedDate from '@components/utility/FormattedDate.astro';
 type Props = CollectionEntry<'blog'>['data'];
 
 const post = Astro.props;
-const { title, description, pubDate, updatedDate, heroImage } = post;
+const { title, description, pubDate, updatedDate, hero } = post;
 
 const categories = [];
-const artistCredit = post.artistCredit;
-const authorName = 'Johnny Wubrg'; //post.author?.node?.name;
+const artistCredit = post.hero?.credit;
+const authorName = ''; //post.author?.node?.name;
 
 const seoTitle = `${SITE_DESCRIPTION} | ${title}`;
 const seoDescription = description ?? SITE_DESCRIPTION;
@@ -20,29 +20,33 @@ const seoDescription = description ?? SITE_DESCRIPTION;
 
 <Base title={seoTitle} description={seoDescription}>
   <article class="post-wrap">
-    {heroImage ? (
-      <ParallaxHero src={heroImage.src} client:load>
-        <h1>{title}</h1>
-        <p class="post-meta">
-          {authorName} on <FormattedDate date={pubDate} />
-          {artistCredit && <> | 🖌️ Artist Credit: {artistCredit}</>}
-        </p>
-      </ParallaxHero>
-    ) : (
-      <div class="post-title container">
-        <h1>{title}</h1>
-        <p class="post-meta">
-          {authorName} on <FormattedDate date={pubDate} />
-          {artistCredit && <> | 🖌️ Artist Credit: {artistCredit}</>}
-        </p>
-      </div>
-    )}
-  
+    {
+      hero ? (
+        <ParallaxHero src={hero.image.src} anchor={hero.anchor} client:load>
+          <h1>{title}</h1>
+          <p class="post-meta">
+            {authorName && <>{authorName} on </>}
+            <FormattedDate date={pubDate} />
+            {artistCredit && <>&nbsp;|&nbsp;🖌️ Artist Credit: {artistCredit}</>}
+          </p>
+        </ParallaxHero>
+      ) : (
+        <div class="post-title container">
+          <h1>{title}</h1>
+          <p class="post-meta">
+            {authorName && <>{authorName} on </>}
+            <FormattedDate date={pubDate} />
+            {artistCredit && <>&nbsp;|&nbsp;🖌️ Artist Credit: {artistCredit}</>}
+          </p>
+        </div>
+      )
+    }
+
     <div class="post-body container">
       <div class="post-content">
         <slot />
       </div>
-  
+
       <!-- {categories.length > 0 && (
         <div class="category-list">
           <h4>Categorized As</h4>
