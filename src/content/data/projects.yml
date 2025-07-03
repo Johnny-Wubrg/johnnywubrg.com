@@ -1,0 +1,9 @@
+- id: mtgbans
+  title: MTGBans.info
+  href: https://www.mtgbans.info/
+  description: 'A source of information regarding banned and restricted Magic: the Gathering cards.'
+
+- id: dungeons
+  title: Dungeon Crawler
+  href: https://dungeons.johnnywubrg.com/
+  description: Simple web application to track progress in dungeons.

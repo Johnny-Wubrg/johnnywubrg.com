@@ -8,6 +8,10 @@ const menu: MenuItem[] = [
     label: 'Privacy Policy',
     path: '/privacy',
   },
+jects  {
+    path: '/projects',
+    label: 'Made by Johnny',
+  },
 ];
 
 const social: MenuItem[] = [
@@ -38,7 +42,7 @@ const social: MenuItem[] = [
             menu?.length &&
               menu.map((item) => (
                 <>
-                  | <a href={item.path}>{item.label}</a>
+                  &bull; <a href={item.path}>{item.label}</a>
                 </>
               ))
           }

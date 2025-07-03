@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from 'src/layouts/Page.astro';
+
+const projects = await getCollection('projects');
+const hero = {
+  src: '/projects-background.jpg',
+  description: '🖌️ Background Art: Goblin Welder by Victor Adame Minguez',
+};
+
+const description = 'A collection of projects created by Johnny Wubrg.';
+---
+
+<Layout title="Made by Johnny" {description} {hero}>
+  <h2>{description}</h2>
+  {
+    projects.length && (
+      <section>
+        {projects.map((p) => (
+          <article>
+            <h3>{p.data.title}</h3>
+            <p>{p.data.description}</p>
+            <div class="actions">
+              <a class="button" href={p.data.href}>
+                Check it Out
+              </a>
+            </div>
+          </article>
+        ))}
+      </section>
+    )
+  }
+</Layout>

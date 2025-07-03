@@ -1,9 +1,8 @@
 ---
-import type { MarkdownLayoutProps } from 'astro';
 import Layout from './Base.astro';
 import ParallaxHero from 'src/components/layout/ParallaxHero.svelte';
 
-type Props = MarkdownLayoutProps<{
+type Props = {
   title: string;
   description: string;
   hero?: {
@@ -12,11 +11,9 @@ type Props = MarkdownLayoutProps<{
     anchor?: string;
     description?: string;
   };
-}>;
+};
 
-const { frontmatter } = Astro.props;
-
-const { title, description, hero } = frontmatter;
+const { title, description, hero } = Astro.props;
 ---
 
 <Layout {title} {description}>
