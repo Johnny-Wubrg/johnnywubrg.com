@@ -113,7 +113,10 @@ button {
   flex: 1 1 auto;
 }
 
-.button {
+.button,
+a.button,
+a.button:link,
+a.button:visited {
   display: inline-block;
   background: var(--color-link);
   color: var(--color-background);
