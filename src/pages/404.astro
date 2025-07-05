@@ -1,0 +1,13 @@
+---
+import { SITE_TITLE } from 'src/consts';
+import Layout from 'src/layouts/Page.astro';
+import CardLink from 'src/components/global/CardLink.astro';
+
+const title = `${SITE_TITLE} | You're totally lost!`;
+const description = "The page you're looking looking for cannot be found.";
+---
+
+<Layout {title} {description}>
+  <h1>You're <CardLink name="Totally Lost">totally lost</CardLink>!</h1>
+  <p>{description}</p>
+</Layout>

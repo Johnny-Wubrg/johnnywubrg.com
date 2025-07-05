@@ -1,0 +1,13 @@
+---
+import { SITE_TITLE } from 'src/consts';
+import Layout from 'src/layouts/Page.astro';
+import CardLink from 'src/components/global/CardLink.astro';
+
+const title = `${SITE_TITLE} | Unknown Error Occurred`;
+const description = 'An unknown error occurred.';
+---
+
+<Layout {title} {description}>
+  <h1><CardLink name="Unexpected Results" /></h1>
+  <p>{description}</p>
+</Layout>
